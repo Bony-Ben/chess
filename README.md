@@ -1,1 +1,3 @@
 # chess
+
+Chess is cool.
