@@ -8,6 +8,8 @@ class Piece;
 class Board
 {
     std::unique_ptr<Piece> arr[8][8];
+
+public:
     Board();
 };
 
