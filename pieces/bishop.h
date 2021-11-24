@@ -3,9 +3,7 @@
 #ifndef BISHOP_H
 #define BISHOP_H
 
-class Bishop : public Piece
-{
-    
+class Bishop : public Piece {
 };
 
 #endif

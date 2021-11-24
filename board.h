@@ -5,9 +5,8 @@
 
 class Piece;
 
-class Board
-{
-public:
+class Board {
+   public:
     std::unique_ptr<Piece> arr[8][8];
     Board();
 };

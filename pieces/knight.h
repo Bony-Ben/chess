@@ -3,9 +3,7 @@
 #ifndef KNIGHT_H
 #define KNIGHT_H
 
-class Knight : public Piece
-{
-    
+class Knight : public Piece {
 };
 
 #endif

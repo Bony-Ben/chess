@@ -3,13 +3,12 @@
 
 class Piece;
 
-class Move
-{
+class Move {
     Piece &piece;
     int rank;
     int file;
 
-public:
+   public:
     Move(Piece &piece, int rank, int file);
 };
 
