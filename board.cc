@@ -9,5 +9,6 @@
 
 Board::Board()
 {
-    arr[0][0] = std::make_unique<Rook>('W', 0, 0, *this);
+    arr[0][0] = std::make_unique<Rook>('W', 0, 0, * this);
+    arr[8][0] = std::make_unique<Rook>('W', 8, 0, * this);
 }
