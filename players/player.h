@@ -5,6 +5,7 @@ class Board;
 class Move;
 
 class Player {
+   protected:
     char colour;
 
    public:
