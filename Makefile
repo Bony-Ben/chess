@@ -1,7 +1,7 @@
 VPATH=pieces:players display
 
 CXX = g++
-CXXFLAGS = -std=c++14 -Wall -MMD
+CXXFLAGS = -std=c++14 -g -Wall -MMD
 EXEC = chess
 OBJECTS = main.o board.o subject.o move.o piece.o rook.o
 DEPENDS = ${OBJECTS:.o=.d}
