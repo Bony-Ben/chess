@@ -4,13 +4,11 @@
 class Board;
 class Move;
 
-class Player
-{
+class Player {
     char colour;
-    Board &board;
 
-public:
-    virtual Move play() = 0;
+   public:
+    virtual Move play(Board &board) = 0;
 };
 
 #endif

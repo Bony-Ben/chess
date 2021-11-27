@@ -14,7 +14,7 @@ class Piece {
 
    public:
     Piece(char colour, int rank, int file, Board &board);
-    virtual std::vector<Move> getMoves() = 0;
+    virtual void getMoves(std::vector<Move> &moves) = 0;
 };
 
 #endif

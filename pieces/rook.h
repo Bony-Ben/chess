@@ -8,7 +8,7 @@
 class Rook : public Piece {
    public:
     Rook(char colour, int rank, int file, Board &board);
-    std::vector<Move> getMoves();
+    void getMoves(std::vector<Move> &moves);
 };
 
 #endif
