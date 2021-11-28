@@ -5,9 +5,6 @@ class Board;
 class Move;
 
 class Player {
-   protected:
-    char colour;
-
    public:
     virtual Move play(Board &board) = 0;
 };

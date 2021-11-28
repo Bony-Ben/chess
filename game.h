@@ -10,10 +10,13 @@
 class Player;
 
 class Game {
-    Board board;
-    std::unique_ptr<Player> white;
-    std::unique_ptr<Player> black;
+    Board &board;
+    Player &white;
+    Player &black;
     std::vector<Move> history;
+
+   public:
+    Game(Board &board, Player &white, Player &black);
 };
 
 #endif
