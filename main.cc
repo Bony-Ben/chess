@@ -3,15 +3,13 @@
 #include "board.h"
 #include "game.h"
 #include "players/human.h"
+#include "players/level1.h"
 
 int main() {
     Human white;
-    Human black;
+    Level1 black;
     Board board;
-
     Game game{board, white, black};
-
-    std::cout << board;
-
+    game.play();
     return 0;
 }

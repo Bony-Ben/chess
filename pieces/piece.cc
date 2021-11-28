@@ -17,3 +17,15 @@ int Piece::getFile() const {
 bool Piece::isCaptured() const {
     return captured;
 }
+
+void Piece::setRank(int r) {
+    rank = r;
+}
+
+void Piece::setFile(int f) {
+    file = f;
+}
+
+void Piece::setCaptured(bool c) {
+    captured = c;
+}

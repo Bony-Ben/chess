@@ -10,14 +10,13 @@
 
 class Board : public Subject {
     std::vector<std::unique_ptr<Piece>> pieces;
+    Piece *board[8][8];
+    void updateBoard();
 
    public:
     Board();
-    std::vector<std::vector<Piece *>> getBoard() const;
-    std::vector<Piece *> getBlackPieces() const;
-    std::vector<Piece *> getWhitePieces() const;
-    std::vector<Move> getBlackMoves() const;
-    std::vector<Move> getWhiteMoves() const;
+    Piece *getSquare(int rank, int file);
+    std::vector<Move> getMoves(char colour) const;
     void makeMove(Move &mv);
 
     friend std::ostream &operator<<(std::ostream &out, const Board &b);

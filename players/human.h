@@ -6,9 +6,12 @@
 class Board;
 class Move;
 
+class ResignException {};
+class UndoException {};
+
 class Human : public Player {
    public:
-    Move play(Board &board) override;
+    Move makeMove(Board &board, char colour) override;
 };
 
 #endif

@@ -6,7 +6,7 @@ class Move;
 
 class Player {
    public:
-    virtual Move play(Board &board) = 0;
+    virtual Move makeMove(Board &board, char colour) = 0;
 };
 
 #endif
