@@ -13,7 +13,8 @@ void Game::play() {
     char turn = 'W';
     Player *p = &white;
     while (true) {
-        history.push_back(p->makeMove(board, turn));
+        p->makeMove(board, turn);
+        history.push_back(board.getPrevMove());
         turn = (turn == 'W') ? 'B' : 'W';
         p = (p == &white) ? &black : &white;
     }

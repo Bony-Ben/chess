@@ -70,7 +70,11 @@ void Board::makeMove(Move &mv) {
     mv.piece.setRank(mv.newRank);
     mv.piece.setFile(mv.newFile);
     updateBoard();
-    lastMove = std::make_unique<Move>(mv);
+    prevMove = std::make_unique<Move>(mv);
+}
+
+Move Board::getPrevMove() {
+    return *prevMove;
 }
 
 std::ostream &operator<<(std::ostream &out, const Board &b) {

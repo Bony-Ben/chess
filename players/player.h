@@ -4,9 +4,12 @@
 class Board;
 class Move;
 
+class StalemateException {};
+class CheckmateException {};
+
 class Player {
    public:
-    virtual Move makeMove(Board &board, char colour) = 0;
+    virtual void makeMove(Board &board, char colour) = 0;
 };
 
 #endif

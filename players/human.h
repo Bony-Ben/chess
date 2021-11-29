@@ -11,7 +11,7 @@ class UndoException {};
 
 class Human : public Player {
    public:
-    Move makeMove(Board &board, char colour) override;
+    void makeMove(Board &board, char colour) override;
 };
 
 #endif
