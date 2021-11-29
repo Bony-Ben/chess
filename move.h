@@ -13,11 +13,10 @@ struct Move {
     int newFile;
     Piece *captured;
     bool check;
-    bool checkmate;
-    bool stalemate;
+    bool castle;
+    bool promotion;
 
-    Move(Piece &piece, int oldRank, int oldFile, int newRank, int newFile, Piece *captured, bool check, bool checkmate, bool stalemate);
-    Move(const Move &mv);
+    Move(Piece &piece, int oldRank, int oldFile, int newRank, int newFile, Piece *captured, bool check, bool castle, bool promotion);
 };
 
 #endif
