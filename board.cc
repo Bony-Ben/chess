@@ -28,10 +28,10 @@ Board::Board() {
     pieces.push_back(std::make_unique<Queen>('B', 7, 3, *this));
     pieces.push_back(std::make_unique<King>('W', 0, 4, *this));
     pieces.push_back(std::make_unique<King>('B', 7, 4, *this));
-    for (int i = 0; i < 8; i++) {
-        pieces.push_back(std::make_unique<Pawn>('W', 1, i, *this));
-        pieces.push_back(std::make_unique<Pawn>('B', 6, i, *this));
-    }
+    // for (int i = 0; i < 8; i++) {
+    //     pieces.push_back(std::make_unique<Pawn>('W', 1, i, *this));
+    //     pieces.push_back(std::make_unique<Pawn>('B', 6, i, *this));
+    // }
     updateBoard();
 }
 
@@ -78,7 +78,7 @@ void Board::makeMove(Move &mv) {
 
 std::ostream &operator<<(std::ostream &out, const Board &b) {
     for (int i = 0; i < 8; i++) {
-        out << 8 - i << ' ';
+        out << 8 - i << "  ";
         for (int j = 0; j < 8; j++) {
             if (b.board[7 - i][j] == nullptr) {
                 if ((7 - i + j) % 2 == 0) {
@@ -94,6 +94,6 @@ std::ostream &operator<<(std::ostream &out, const Board &b) {
         out << std::endl;
     }
     out << std::endl;
-    out << "  a b c d e f g h";
+    out << "   a b c d e f g h";
     return out;
 }

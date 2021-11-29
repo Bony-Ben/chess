@@ -8,7 +8,7 @@ class TextObserver : public Observer {
     Board *board;
 
    public:
-    TextObserver(Board *Board);
+    TextObserver(Board *board);
     void notify() override;
     ~TextObserver();
 };
