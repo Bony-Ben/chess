@@ -67,8 +67,8 @@ void Board::makeMove(Move &mv) {
     if (mv.captured != nullptr) {
         mv.captured->setCaptured(true);
     }
-    mv.piece.setRank(mv.rank);
-    mv.piece.setFile(mv.file);
+    mv.piece.setRank(mv.newRank);
+    mv.piece.setFile(mv.newFile);
     updateBoard();
 }
 
