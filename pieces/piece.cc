@@ -1,11 +1,13 @@
 #include "piece.h"
 
 #include <cctype>
+#include <iostream>
 
 Piece::Piece(char colour, int rank, int file, char letter, Board &board) : colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, captured{false} {}
 
-char Piece::toChar() const {
-    return (colour == 'W') ? toupper(letter) : letter;
+std::ostream &operator<<(std::ostream &out, const Piece &p) {
+    out << (char)((p.colour == 'W') ? toupper(p.letter) : p.letter);
+    return out;
 }
 
 char Piece::getColour() const {

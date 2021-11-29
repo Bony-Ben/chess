@@ -18,7 +18,6 @@ class Piece {
    public:
     Piece(char colour, int rank, int file, char letter, Board &board);
     virtual void getMoves(std::vector<Move> &moves) = 0;
-    char toChar() const;
     char getColour() const;
     int getRank() const;
     int getFile() const;
@@ -27,6 +26,7 @@ class Piece {
     void setRank(int r);
     void setFile(int f);
     void setCaptured(bool c);
+    friend std::ostream &operator<<(std::ostream &out, const Piece &p);
 };
 
 #endif

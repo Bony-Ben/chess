@@ -12,6 +12,7 @@ class Board : public Subject {
     std::vector<std::unique_ptr<Piece>> pieces;
     Piece *board[8][8];
     void updateBoard();
+    
 
    public:
     Board();

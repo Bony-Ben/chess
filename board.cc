@@ -83,7 +83,7 @@ std::ostream &operator<<(std::ostream &out, const Board &b) {
                     out << ' ';
                 }
             } else {
-                out << b.board[7 - i][j]->toChar();
+                out << *b.board[7 - i][j];
             }
             out << ' ';
         }
