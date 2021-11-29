@@ -11,11 +11,13 @@
 class Board : public Subject {
     std::vector<std::unique_ptr<Piece>> pieces;
     Piece *board[8][8];
+    Move *lastMove;
+
     void updateBoard();
-    
 
    public:
     Board();
+    void setLastMove(Move * mv);
     Piece *getSquare(int rank, int file);
     std::vector<Move> getMoves(char colour) const;
     void makeMove(Move &mv);

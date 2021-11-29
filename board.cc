@@ -39,6 +39,10 @@ Piece *Board::getSquare(int rank, int file) {
     return board[rank][file];
 }
 
+void Board::setLastMove(Move *mv) {
+    lastMove = mv;
+}
+
 void Board::updateBoard() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {

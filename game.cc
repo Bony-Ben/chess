@@ -13,6 +13,7 @@ void Game::play() {
     while (true) {
         std::cout << board << std::endl;
         history.push_back(p->makeMove(board, turn));
+        board.setLastMove(&history.back());
         turn = (turn == 'W') ? 'B' : 'W';
         p = (p == &white) ? &black : &white;
     }

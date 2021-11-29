@@ -6,6 +6,8 @@
 #define KING_H
 
 class King : public Piece {
+    bool canCastle;
+
    public:
     King(char colour, int rank, int file, Board &board);
     void getMoves(std::vector<Move> &moves) override;
