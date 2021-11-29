@@ -3,9 +3,10 @@
 #include "../board.h"
 #include "../move.h"
 
-Rook::Rook(char colour, int rank, int file, Board &board) : Piece{colour, rank, file, board} {}
+Rook::Rook(char colour, int rank, int file, Board &board) : Piece{colour, rank, file, 'r', board} {}
 
 void Rook::getMoves(std::vector<Move> &moves) {
+    //check for legal moves in upper direction
     for (int i = rank + 1; i < 8; i++) {
         moves.emplace_back(*this, i, file, board.getSquare(i, file), false, false, false);
         if (board.getSquare(i, file) != nullptr) {
@@ -15,6 +16,7 @@ void Rook::getMoves(std::vector<Move> &moves) {
             break;
         }
     }
+    //check for legal moves in lower direction
     for (int i = rank - 1; i >= 0; i--) {
         moves.emplace_back(*this, i, file, board.getSquare(i, file), false, false, false);
         if (board.getSquare(i, file) != nullptr) {
@@ -24,6 +26,7 @@ void Rook::getMoves(std::vector<Move> &moves) {
             break;
         }
     }
+    //check for legal moves in right direction
     for (int i = file + 1; i < 8; i++) {
         moves.emplace_back(*this, rank, i, board.getSquare(rank, i), false, false, false);
         if (board.getSquare(rank, i) != nullptr) {
@@ -33,6 +36,7 @@ void Rook::getMoves(std::vector<Move> &moves) {
             break;
         }
     }
+    //check for legal moves in left direction
     for (int i = file - 1; i >= 0; i--) {
         moves.emplace_back(*this, rank, i, board.getSquare(rank, i), false, false, false);
         if (board.getSquare(rank, i) != nullptr) {
@@ -41,13 +45,5 @@ void Rook::getMoves(std::vector<Move> &moves) {
             }
             break;
         }
-    }
-}
-
-char Rook::toChar() const {
-    if (colour == 'W') {
-        return 'R';
-    } else {
-        return 'r';
     }
 }

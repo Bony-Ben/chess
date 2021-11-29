@@ -1,0 +1,23 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: Entering directory `c:/Users/julia/Documents/Uni/2A/CS 246/Chess/chess'
+g++ -std=c++14 -g -Wall -MMD   -c -o main.o main.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o board.o board.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o subject.o display/subject.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o move.o move.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o game.o game.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o human.o players/human.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o level1.o players/level1.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o piece.o pieces/piece.cc
+ 
+g++ -std=c++14 -g -Wall -MMD   -c -o rook.o pieces/rook.cc
+g++ -std=c++14 -g -Wall -MMD main.o board.o subject.o move.o game.o human.o level1.o piece.o rook.o -o chess
+ 
+make.exe: Leaving directory `c:/Users/julia/Documents/Uni/2A/CS 246/Chess/chess'
+ 

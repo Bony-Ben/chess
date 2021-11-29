@@ -11,13 +11,14 @@ class Piece {
     char colour;
     int rank;
     int file;
+    char letter;
     Board &board;
     bool captured;
 
    public:
-    Piece(char colour, int rank, int file, Board &board);
+    Piece(char colour, int rank, int file, char letter, Board &board);
     virtual void getMoves(std::vector<Move> &moves) = 0;
-    virtual char toChar() const = 0;
+    char toChar() const;
     char getColour() const;
     int getRank() const;
     int getFile() const;

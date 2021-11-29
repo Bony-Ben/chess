@@ -9,7 +9,6 @@ class Rook : public Piece {
    public:
     Rook(char colour, int rank, int file, Board &board);
     void getMoves(std::vector<Move> &moves) override;
-    char toChar() const override;
 };
 
 #endif

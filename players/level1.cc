@@ -1,5 +1,7 @@
 #include "level1.h"
 
+#include <stdlib.h>
+
 #include <vector>
 
 #include "../board.h"

@@ -1,0 +1,739 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-pc-mingw32
+ 
+
+# Make data base, printed on Sun Nov 28 15:07:35 2021
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile
+CURDIR := c:/Users/julia/Documents/Uni/2A/CS 246/Chess/chess
+# default
+SHELL := sh.exe
+# environmen 
+t
+WINDIR = C:\WINDOWS
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+ONEDRIVE = C:\Users\julia\OneDrive
+# environment
+MAVEN_HOME = C:\apache-maven-3.8.1
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (from `rook.d', line 1)
+MAKEFILE_LIST :=  makefile main.d board.d subject.d move.d game.d human.d level1.d piece.d rook.d
+# environment
+TMP = C:\Users\julia\AppData\Local\Temp
+# makefile (from `makefile', line 4)
+CXXFLAGS = -std=c++14 -g -Wall -MMD
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-319a7b87-c8cb-40af-a20b-9234cb45b5bd-sock
+# environment
+VSCODE_CWD = C:\Users\julia\AppData\Local\Programs\Microsoft VS Code
+# environment
+PATH = C:\Program Files (x86)\GnuWin32\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Brackets\command;C:\ProgramData\chocolatey\bin;C:\Gradle\gradle-7.0\bin;C:\Program Files\Java\jdk1.8.0_291\bin;C:\apache-maven-3.8.1\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Google Protobuf\bin;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\Program Files (x86)\Vim\vim82;C:\msys64\mingw64\bin;C:\Users\julia\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\julia\AppData\Local\Programs\Python\Python39\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\julia\AppData\Local\Microsoft\WindowsApps;C:\Users\julia\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\julia\AppData\Local\GitHubDesktop\bin;C:\Users\julia\AppData\Local\Android\Sdk\platform-tools;C:\Users\julia\AppData\Roaming\npm
+# environment
+ONLINESERVICES = Online Services
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# en 
+vironment
+CHOCOLATEYLASTPATHUPDATE = 132425058678516997
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+USERPROFILE = C:\Users\julia
+# environment
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# makefile (from `makefile', line 1)
+VPATH = pieces players display
+# environment
+VSCODE_LOG_STACK = false
+# environment
+NUMBER_OF_PROCESSORS = 8
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+ANDROID_HOME = C:\Users\julia\AppData\Local\Android\Sdk
+# defaul 
+t
+.FEATURES := target-specific order-only second-expansion else-if archives
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = localhost:0.0
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8808_KRLUGHQAQJIYYVRP
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+COMPUTERNAME = LAPTOP-2DVVH67D
+# environment
+GOOGLE_API_KEY = no
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = und 
+efined
+# environment
+USERNAME = Julia
+# environment
+PUBLIC = C:\Users\Public
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+GOOGLE_DEFAULT_CLIENT_ID = no
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\julia\AppData\Roaming\Code\CachedData\ccbaa2d27e38e5afa3e5c21c1c7bef4657064247
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# environment
+LOGONSERVER = \\LAPTOP-2DVVH67D
+# makefile (from `makefile', line 7)
+DEPENDS = ${OBJECTS:.o=.d}
+# environment
+M2_HOME = C:\apache-maven-3.8.1
+# environment
+ONEDRIVECONSUMER = C:\Users\julia\OneDrive
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = LAPTOP-2DVVH67D
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+JAVA_HOME = C:\Program Files\Java\jdk1.8.0_291
+# makefile (from `makefile', line 5)
+EXEC = chess
+# default
+MAKE_VERSION := 3.81
+# makefile
+.DEFAULT_GOAL := che 
+ss
+# environment
+GOOGLE_DEFAULT_CLIENT_SECRET = no
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LOCALAPPDATA = C:\Users\julia\AppData\Local
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make.exe
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+PROCESSOR_IDENTIFIER = Intel64 
+ Family 6 Model 142 Stepping 10, GenuineIntel
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\f36f7e8fc164d200a4a11433759b0c3e-1.62.3-main-sock
+# environment
+HOMEPATH = \Users\julia
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+REGIONCODE = NA
+# environment
+SYSTEMROOT = C:\WINDOWS
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+PLAT 
+FORMCODE = KV
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\julia\AppData\Roaming
+# environment
+TEMP = C:\Users\julia\AppData\Local\Temp
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# makefile (from `makefile', line 3)
+CXX = g++
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = 8e0a
+# environment
+MAKELE 
+VEL := 0
+# makefile (from `makefile', line 6)
+OBJECTS = main.o board.o subject.o move.o game.o human.o level1.o piece.o rook.o
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+VSCODE_PID = 8808
+# environment
+USERDOMAIN_ROAMINGPROFILE = LAPTOP-2DVVH67D
+# variable set hash-table stats:
+# Load=106/1024=10%, Rehash=0, Collisions=9/148=6%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# C:\Program Files\Docker\Docker\resources\bin (key C:/Program Files/Docker/Docker/resources/bin, mtime 1626804180): 13 files, no impossibilities.
+# display (key c:/Users/julia/Documents/Uni/2A/CS 246/Chess/chess/display, mtime 1638035246): 7 files, no impossibilities.
+# C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\ (key C:/Program Files (x86)/Intel/Intel(R) Management Engine Components/iCLS/, mtime 1533192649): 8 files, no impossibilities.
+# C:\Users\julia\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/julia/AppData/Local/Progra 
+ms/Microsoft VS Code/bin, mtime 1637436213): 4 files, no impossibilities.
+# C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (key C:/WINDOWS/System32/WindowsPowerShell/v1.0/, mtime 1615996238): 30 files, no impossibilities.
+# C:\WINDOWS\System32\Wbem (key C:/WINDOWS/System32/Wbem, mtime 1636608596): 154 files, no impossibilities.
+# . (key c:/Users/julia/Documents/Uni/2A/CS 246/Chess/chess, mtime 1638126957): 37 files, no impossibilities.
+# C:\Users\julia\AppData\Roaming\npm (key C:/Users/julia/AppData/Roaming/np 
+m, mtime 1630955969): 27 files, no impossibilities.
+# pieces (key c:/Users/julia/Documents/Uni/2A/CS 246/Chess/chess/pieces, mtime 1638125598): 11 files, no impossibilities.
+# C:\ProgramData\chocolatey\bin (key C:/ProgramData/chocolatey/bin, mtime 1598028528): 13 files, no impossibilities.
+# C:\Program Files\nodejs\ (key C:/Program Files/nodejs/, mtime 1628347727): 11 files, no impossibilities.
+# C:\Program Files\MySQL\MySQL Shell 8.0\bin\ (key C:/Program Files/MySQL/MySQL Shell 8.0/bin/, mtime 1620492315): 
+ 7 files, no impossibilities.
+# C:\Users\julia\AppData\Local\Programs\Python\Python39\ (key C:/Users/julia/AppData/Local/Programs/Python/Python39/, mtime 1628347018): 7 files, no impossibilities.
+# C:\Users\julia\AppData\Local\GitHubDesktop\bin (key C:/Users/julia/AppData/Local/GitHubDesktop/bin, mtime 1628380989): 4 files, no impossibilities.
+# C:\Program Files\Intel\Intel(R) Management Engine Components\IPT (key C:/Program Files/Intel/Intel(R) Management Engine Components/IPT, mtime 1533192619): 5 files,  
+no impossibilities.
+# C:\WINDOWS\System32\OpenSSH\: could not be stat'd.
+# C:\Program Files\PuTTY\ (key C:/Program Files/PuTTY/, mtime 1631128425): 12 files, no impossibilities.
+# C:\Users\julia\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/julia/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1628276678): 27 files, no impossibilities.
+# C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1635131412): 5 files, n 
+o impossibilities.
+# C:\apache-maven-3.8.1\bin (key C:/apache-maven-3.8.1/bin, mtime 1620154478): 8 files, no impossibilities.
+# C:\Program Files\Google Protobuf\bin (key C:/Program Files/Google Protobuf/bin, mtime 1628276517): 3 files, no impossibilities.
+# C:\Program Files\Intel\Intel(R) Management Engine Components\DAL (key C:/Program Files/Intel/Intel(R) Management Engine Components/DAL, mtime 1533192619): 4 files, no impossibilities.
+# C:\WINDOWS (key C:/WINDOWS, mtime 1638052560): 118 files, no imposs 
+ibilities.
+# players (key c:/Users/julia/Documents/Uni/2A/CS 246/Chess/chess/players, mtime 1638125598): 10 files, no impossibilities.
+# C:\Program Files (x86)\Brackets\command (key C:/Program Files (x86)/Brackets/command, mtime 1594918356): 4 files, no impossibilities.
+# C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\ (key C:/Program Files/Intel/Intel(R) Management Engine Components/iCLS/, mtime 1533192648): 11 files, no impossibilities.
+# C:\Program Files\Intel\WiFi\bin\ (key C:/Program 
+ Files/Intel/WiFi/bin/, mtime 1560556352): 38 files, no impossibilities.
+# C:\Program Files\Common Files\Intel\WirelessCommon\ (key C:/Program Files/Common Files/Intel/WirelessCommon/, mtime 1560556351): 7 files, no impossibilities.
+# C:\Program Files\Java\jdk1.8.0_291\bin (key C:/Program Files/Java/jdk1.8.0_291/bin, mtime 1622558056): 54 files, no impossibilities.
+# C:\Gradle\gradle-7.0\bin (key C:/Gradle/gradle-7.0/bin, mtime 1620074031): 4 files, no impossibilities.
+# C:\Users\julia\AppData\Local\Android 
+\Sdk\platform-tools (key C:/Users/julia/AppData/Local/Android/Sdk/platform-tools, mtime 1593994164): 20 files, no impossibilities.
+# C:\Program Files (x86)\Vim\vim82 (key C:/Program Files (x86)/Vim/vim82, mtime 1631128885): 55 files, no impossibilities.
+# C:\ProgramData\DockerDesktop\version-bin (key C:/ProgramData/DockerDesktop/version-bin, mtime 1626804221): 2 files, no impossibilities.
+# C:\msys64\mingw64\bin (key C:/msys64/mingw64/bin, mtime 1638065477): 207 files, no impossibilities.
+# C:\Users\julia\AppData\Local\Microsoft\WindowsApps (key C:/Users/julia/AppData/Local/Microsoft/WindowsApps, mtime 1637169229): 17 files, no impossibilities.
+# C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1620825033): 8 files, no impossibilities.
+# C:\WINDOWS\system32 (key C:/WINDOWS/system32, mtime 1638123751): 3106 files, no impossibilities.
+# C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT (key C:/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT, mtime 1533192619 
+): 6 files, no impossibilities.
+# C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL (key C:/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL, mtime 1533192619): 10 files, no impossibilities.
+# C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, mtime 1638069484): 5 files, no impossibilities.
+
+# 4079 files, no impossibilities in 40 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+players/../pieces/../move.h:
+#  Im 
+plicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/../move.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/knight.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+rook.o: pieces/rook.cc pieces/rook.h pieces/piece.h pieces/../move.h pieces/../board.h pieces/../display/subject.h pieces/../display/observer.h pieces/../move.h pieces/../pieces/piece.h pieces/../pieces/../move.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/../board.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/../display/observer.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/../pieces/../move.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/. 
+./move.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+board.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-28 14:15:57
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, 
+ Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+game.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/human.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+move.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+piece.o: pieces/piece.cc pieces/piece.h pieces/../move.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+human.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-28 13:56:23
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+display/subject.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not 
+ been updated.
+
+# Not a target:
+pieces/../display/observer.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-28 13:53:18
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+pieces/rook.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked 
+.
+#  File has not been updated.
+
+# Not a target:
+pieces/piece.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+level1.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-28 13:57:33
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+pieces/bishop.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+game.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-28 13:56:23
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+move.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modifi 
+ed 2021-11-28 13:56:22
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+board.o: board.cc board.h display/subject.h display/observer.h move.h pieces/piece.h pieces/../move.h pieces/bishop.h pieces/piece.h pieces/king.h pieces/knight.h pieces/pawn.h pieces/queen.h pieces/rook.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+subject.d:
+#  A default, MAK 
+EFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-27 21:06:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+main.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-28 13:56:21
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/player.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+human.o: players/human.cc players/human.h players/player.h players/../board.h players/../display/subject.h players/../display/observer.h players/../move.h players/../pieces/piece.h players/../pieces/../move.h playe 
+rs/../move.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/../pieces/piece.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/human.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/level1.cc:
+#  Implicit rule search has not been done.
+#  Modification 
+ time never checked.
+#  File has not been updated.
+
+# Not a target:
+display/subject.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+board.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+display/observer.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequi 
+site of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `makefile', line 17):
+	rm ${OBJECTS} ${EXEC} ${DEPENDS}
+	
+
+level1.o: players/level1.cc players/level1.h players/player.h players/../board.h players/../display/subject.h players/../display/observer.h players/../move.h players/../pieces/piece.h players/../pieces/../move.h players/../move.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+game.o: game.cc game.h board.h display/subject.h display/observer.h move.h pieces/piece.h pieces/../move.h players/player.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+move.o: move.cc move.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/rook.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  Fi 
+le has not been updated.
+
+# Not a target:
+pieces/../pieces/piece.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/piece.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+chess: main.o board.o subject.o move.o game.o human.o level1.o piece.o rook.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `makefile', line 10):
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+	
+
+# Not a target:
+pieces/king.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+subject.o: display/subject.cc display/subject.h display/observer.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+rook.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search 
+ has been done.
+#  Last modified 2021-11-28 13:57:34
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+main.o: main.cc board.h display/subject.h display/observer.h move.h pieces/piece.h pieces/../move.h game.h players/human.h players/player.h players/level1.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/../display/subject.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+game.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+move.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/../board.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# N 
+ot a target:
+main.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/pawn.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+players/level1.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+board.h:
+#  Implicit rule search has not been done.
+#  Modification time never  
+checked.
+#  File has not been updated.
+
+# Not a target:
+piece.d:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-28 13:57:33
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+pieces/queen.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+pieces/../display/subject.h: 
+
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=61/1024=6%, Rehash=0, Collisions=10/167=6%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# General (`VPATH' variable) search path:
+# pieces;players;display
+
+# # of strings in strcache: 10
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4016 / max = 4016 / min = 4016 / avg = 4016
+
+# Finished 
+make.exe: *** No rule to make target `all'.  Stop.
+ 
+ Make data base on Sun Nov 28 15:07:35 2021
+
+ 
