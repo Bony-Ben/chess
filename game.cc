@@ -8,11 +8,13 @@
 Game::Game(Board &board, Player &white, Player &black) : board{board}, white{white}, black{black} {}
 
 void Game::play() {
+    char turn = 'W';
+    Player *p = &white;
     while (true) {
         std::cout << board << std::endl;
-        history.push_back(white.makeMove(board, 'W'));
-        std::cout << board << std::endl;
-        history.push_back(black.makeMove(board, 'B'));
+        history.push_back(p->makeMove(board, turn));
+        turn = (turn == 'W') ? 'B' : 'W';
+        p = (p == &white) ? &black : &white;
     }
     std::cout << board << std::endl;
 }
