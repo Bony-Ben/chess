@@ -17,6 +17,7 @@ struct Move {
     bool stalemate;
 
     Move(Piece &piece, int oldRank, int oldFile, int newRank, int newFile, Piece *captured, bool check, bool checkmate, bool stalemate);
+    Move(const Move &mv);
 };
 
 #endif

@@ -14,7 +14,6 @@ void Game::play() {
     Player *p = &white;
     while (true) {
         history.push_back(p->makeMove(board, turn));
-        board.setLastMove(&history.back());
         turn = (turn == 'W') ? 'B' : 'W';
         p = (p == &white) ? &black : &white;
     }
