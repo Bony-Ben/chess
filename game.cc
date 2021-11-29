@@ -1,6 +1,7 @@
 #include "game.h"
 
 #include <iostream>
+#include <string>
 
 #include "move.h"
 #include "players/player.h"
@@ -11,11 +12,30 @@ void Game::play() {
     board.notifyObservers();
 
     char turn = 'W';
-    Player *p = &white;
+    std::string colour = "White";
+    Player *player = &white;
+    Player *opp = &black;
+
     while (true) {
-        p->makeMove(board, turn);
+        player->makeMove(board, turn);
         history.push_back(board.getPrevMove());
-        turn = (turn == 'W') ? 'B' : 'W';
-        p = (p == &white) ? &black : &white;
+        if (turn == 'W') {
+            turn = 'B';
+            opp = player;
+            player = &black;
+            colour = "Black";
+        } else {
+            turn = 'W';
+            opp = player;
+            player = &white;
+            colour = "White";
+        }
     }
+    printResult();
+}
+
+void Game::printResult() {
+    std::cout << "Final Score:" << std::endl;
+    std::cout << "White: " << white.getScore() << std::endl;
+    std::cout << "Black: " << black.getScore() << std::endl;
 }

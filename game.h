@@ -18,6 +18,7 @@ class Game {
    public:
     Game(Board &board, Player &white, Player &black);
     void play();
+    void printResult();
 };
 
 #endif
