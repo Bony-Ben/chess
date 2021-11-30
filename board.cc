@@ -39,6 +39,16 @@ Piece *Board::getSquare(int rank, int file) {
     return board[rank][file];
 }
 
+std::vector<Piece *> Board::getPieces() {
+    std::vector<Piece *> pcs;
+    for (int i = 0; i < (int)pieces.size(); i++) {
+        if (!pieces[i]->isCaptured()) {
+            pcs.push_back(pieces[i].get());
+        }
+    }
+    return pcs;
+}
+
 void Board::updateBoard() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {

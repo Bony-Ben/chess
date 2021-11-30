@@ -1,5 +1,6 @@
 #ifndef _TOBSERVER_H_
 #define _TOBSERVER_H_
+#include "../board.h"
 #include "observer.h"
 
 class Board;

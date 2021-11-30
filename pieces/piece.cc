@@ -22,6 +22,10 @@ int Piece::getFile() const {
     return file;
 }
 
+char Piece::getLetter() const {
+    return (colour == 'W') ? toupper(letter) : letter;
+}
+
 bool Piece::isCaptured() const {
     return captured;
 }

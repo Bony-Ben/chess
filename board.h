@@ -11,7 +11,7 @@
 class Board : public Subject {
     std::vector<std::unique_ptr<Piece>> pieces;
     Piece *board[8][8];
-    std::unique_ptr<Move>prevMove;
+    std::unique_ptr<Move> prevMove;
 
     void updateBoard();
 
@@ -20,6 +20,7 @@ class Board : public Subject {
     Move getPrevMove();
     Piece *getSquare(int rank, int file);
     std::vector<Move> getMoves(char colour) const;
+    std::vector<Piece *> getPieces();
     void makeMove(Move &mv);
 
     friend std::ostream &operator<<(std::ostream &out, const Board &b);

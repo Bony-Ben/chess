@@ -1,16 +1,19 @@
 #ifndef _GOBSERVER_H_
 #define _GOBSERVER_H_
+#include "../board.h"
 #include "observer.h"
+#include "window.h"
 
 class Board;
 
-class TextObserver : public Observer {
+class GraphicsObserver : public Observer {
     Board *board;
+    Xwindow *w;
 
    public:
-    TextObserver(Board *board);
+    GraphicsObserver(Board *board);
     void notify() override;
-    ~TextObserver();
+    ~GraphicsObserver();
 };
 
 #endif

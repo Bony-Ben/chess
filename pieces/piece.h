@@ -21,6 +21,7 @@ class Piece {
     char getColour() const;
     int getRank() const;
     int getFile() const;
+    char getLetter() const;
     bool isCaptured() const;
 
     void setRank(int r);
