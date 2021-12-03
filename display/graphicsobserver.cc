@@ -23,7 +23,7 @@ GraphicsObserver::GraphicsObserver(Board *board) : board{board} {
         w->drawString(10, y, std::to_string(num_label), Xwindow::Black);
         w->drawString(10, y + 90, std::to_string(num_label-1), Xwindow::White);
         w->drawString(y, 710, std::string(1, alph_label), Xwindow::White);
-        w->drawString(y + 90, 710, std::string(1, alph_label), Xwindow::Black);
+        w->drawString(y + 90, 710, std::string(1, alph_label + 1), Xwindow::Black);
         num_label -= 2;
         alph_label += 2;
     }
