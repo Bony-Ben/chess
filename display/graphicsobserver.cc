@@ -17,6 +17,16 @@ GraphicsObserver::GraphicsObserver(Board *board) : board{board} {
         }
         white = !white;
     }
+    int num_label = 8;
+    char alph_label = 'A';
+    for (int y = 45; y <= 640; y += 180)  {
+        w->drawString(10, y, std::to_string(num_label), Xwindow::Black);
+        w->drawString(10, y + 90, std::to_string(num_label-1), Xwindow::White);
+        w->drawString(y, 710, std::string(1, alph_label), Xwindow::White);
+        w->drawString(y + 90, 710, std::string(1, alph_label), Xwindow::Black);
+        num_label -= 2;
+        alph_label += 2;
+    }
     board->attach(this);
 }
 
@@ -28,6 +38,10 @@ GraphicsObserver::~GraphicsObserver() {
 void GraphicsObserver::notify() {
     std::vector<Piece *> pieces = board->getPieces();
     for (auto p : pieces) {
-        w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()));
+        if ((p->getRank() % 2) != (p->getFile() % 2)) {
+            w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::Black);
+        } else {
+            w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::White);
+        }
     }
 }

@@ -12,7 +12,7 @@ int main() {
     Level1 black;
     Board board;
     TextObserver tobs{&board};
-    // GraphicsObserver gobs{&board};
+    //GraphicsObserver gobs{&board};
     Game game{board, white, black};
     game.play();
     return 0;
