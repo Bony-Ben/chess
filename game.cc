@@ -28,7 +28,7 @@ void Game::play() {
             }
             break;
         } else if (history.size() > 0 && history.back().check) {
-            std::cout << colour << "is in check!" << std::endl;
+            std::cout << colour << " is in check!" << std::endl;
         }
 
         player->makeMove(board, moves, turn);
