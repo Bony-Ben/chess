@@ -12,32 +12,32 @@
 #include "pieces/rook.h"
 
 Board::Board() {
-    pieces.push_back(std::make_unique<Rook>('W', 0, 0, *this));
-    pieces.push_back(std::make_unique<Rook>('W', 0, 7, *this));
-    pieces.push_back(std::make_unique<Rook>('B', 7, 0, *this));
-    pieces.push_back(std::make_unique<Rook>('B', 7, 7, *this));
-    pieces.push_back(std::make_unique<Knight>('W', 0, 1, *this));
-    pieces.push_back(std::make_unique<Knight>('W', 0, 6, *this));
-    pieces.push_back(std::make_unique<Knight>('B', 7, 1, *this));
-    pieces.push_back(std::make_unique<Knight>('B', 7, 6, *this));
-    pieces.push_back(std::make_unique<Bishop>('W', 0, 2, *this));
-    pieces.push_back(std::make_unique<Bishop>('W', 0, 5, *this));
-    pieces.push_back(std::make_unique<Bishop>('B', 7, 2, *this));
-    pieces.push_back(std::make_unique<Bishop>('B', 7, 5, *this));
-    pieces.push_back(std::make_unique<Queen>('W', 0, 3, *this));
-    pieces.push_back(std::make_unique<Queen>('B', 7, 3, *this));
-    pieces.push_back(std::make_unique<King>('W', 0, 4, *this));
-    pieces.push_back(std::make_unique<King>('B', 7, 4, *this));
+    pieces.push_back(std::make_unique<Rook>('W', 0, 0, this));
+    pieces.push_back(std::make_unique<Rook>('W', 0, 7, this));
+    pieces.push_back(std::make_unique<Rook>('B', 7, 0, this));
+    pieces.push_back(std::make_unique<Rook>('B', 7, 7, this));
+    pieces.push_back(std::make_unique<Knight>('W', 0, 1, this));
+    pieces.push_back(std::make_unique<Knight>('W', 0, 6, this));
+    pieces.push_back(std::make_unique<Knight>('B', 7, 1, this));
+    pieces.push_back(std::make_unique<Knight>('B', 7, 6, this));
+    pieces.push_back(std::make_unique<Bishop>('W', 0, 2, this));
+    pieces.push_back(std::make_unique<Bishop>('W', 0, 5, this));
+    pieces.push_back(std::make_unique<Bishop>('B', 7, 2, this));
+    pieces.push_back(std::make_unique<Bishop>('B', 7, 5, this));
+    pieces.push_back(std::make_unique<Queen>('W', 0, 3, this));
+    pieces.push_back(std::make_unique<Queen>('B', 7, 3, this));
+    pieces.push_back(std::make_unique<King>('W', 0, 4, this));
+    pieces.push_back(std::make_unique<King>('B', 7, 4, this));
     // for (int i = 0; i < 8; i++) {
-    //     pieces.push_back(std::make_unique<Pawn>('W', 1, i, *this));
-    //     pieces.push_back(std::make_unique<Pawn>('B', 6, i, *this));
+    //     pieces.push_back(std::make_unique<Pawn>('W', 1, i, this));
+    //     pieces.push_back(std::make_unique<Pawn>('B', 6, i, this));
     // }
     updateBoard();
 }
 
 Board::Board(Board &board) {
     for (int i = 0; i < board.pieces.size(); i++) {
-        pieces.push_back(board.pieces[i]->clone());
+        pieces.push_back(board.pieces[i]->clone(this));
     }
     if (board.prevMove != nullptr) {
         prevMove = std::make_unique<Move>(*board.prevMove);
@@ -76,11 +76,11 @@ void Board::updateBoard() {
 std::vector<Move> Board::getMoves(char colour, bool validateChecks) const {
     std::vector<Move> ans;
     for (int i = 0; i < (int)pieces.size(); i++) {
-        if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour && validateChecks) {
-            std::cout << ans.size() << std::endl;
-        }
         if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour) {
             pieces[i]->getMoves(ans, validateChecks);
+        }
+        if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour && validateChecks) {
+            std::cout << ans.size() << std::endl;
         }
     }
     return ans;

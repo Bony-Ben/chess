@@ -7,10 +7,10 @@
 #include "../move.h"
 #include "king.h"
 
-Piece::Piece(char colour, int rank, int file, char letter, Board &board) : colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, captured{false} {}
+Piece::Piece(char colour, int rank, int file, char letter, Board *board) : colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, captured{false} {}
 
 void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateChecks) {
-    if (mv.capturedPiece != nullptr && mv.piece->colour == mv.capturedPiece->colour) {
+    if (mv.capturedPiece != nullptr && colour == mv.capturedPiece->colour) {
         return;
     }
     if (!validateChecks) {
@@ -18,20 +18,22 @@ void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateCheck
         return;
     }
 
-    Board tempBoard = board;
-
+    Board tempBoard = *board;
     Move tempMove = mv;
     tempMove.piece = tempBoard.getSquare(mv.oldRank, mv.oldFile);
     if (mv.capturedPiece != nullptr) {
-        tempMove.capturedPiece = tempBoard.getSquare(mv.capturedPiece->getRank(), mv.capturedPiece->getFile());
+        tempMove.capturedPiece = tempBoard.getSquare(mv.capturedPiece->rank, mv.capturedPiece->file);
     }
     tempBoard.makeMove(tempMove);
+
+    std:: cout << tempBoard << std::endl;
 
     std::vector<Move> whiteMoves = tempBoard.getMoves('W', false);
     bool whiteCheck = false;
     for (int i = 0; i < (int)whiteMoves.size(); i++) {
         if (dynamic_cast<King *>(whiteMoves[i].capturedPiece) != nullptr) {
             whiteCheck = true;
+            break;
         }
     }
 
@@ -40,13 +42,14 @@ void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateCheck
     for (int i = 0; i < (int)blackMoves.size(); i++) {
         if (dynamic_cast<King *>(blackMoves[i].capturedPiece) != nullptr) {
             blackCheck = true;
+            break;
         }
     }
 
-    if (mv.piece->colour == 'W' && !blackCheck) {
+    if (colour == 'W' && !blackCheck) {
         mv.check = whiteCheck;
         moves.push_back(mv);
-    } else if (mv.piece->colour == 'B' && !whiteCheck) {
+    } else if (colour == 'B' && !whiteCheck) {
         mv.check = blackCheck;
         moves.push_back(mv);
     }

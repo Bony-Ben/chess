@@ -16,7 +16,5 @@ void Level1::makeMove(Board &board, char colour) {
 
     std::vector<Move> moves = board.getMoves(colour, true);
 
-    std::cout << moves.size() << std::endl;
-
     board.makeMove(moves[rand() % moves.size()]);
 }
