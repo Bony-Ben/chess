@@ -13,7 +13,6 @@ void Rook::executeWhenMoved(Move &mv){
 void Rook::getMoves(std::vector<Move> &moves, bool validateChecks) {
     //check for legal moves in upper direction
     for (int i = rank + 1; i < 8; i++) {
-        Move x=Move(this, rank, file, i, file, board->getSquare(i, file),  false, false, false);
         addMoveIfValid(Move(this, rank, file, i, file, board->getSquare(i, file),  false, false, false), moves, validateChecks);
         if (board->getSquare(i, file) != nullptr) {
             break;

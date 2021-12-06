@@ -33,18 +33,17 @@ void Game::play() {
 
         player->makeMove(board, moves, turn);
         history.push_back(board.getPrevMove());
+        std::swap(player,opp);
         if (turn == 'W') {
             turn = 'B';
-            opp = player;
-            player = &black;
             colour = "Black";
         } else {
             turn = 'W';
-            opp = player;
-            player = &white;
             colour = "White";
         }
     }
+    std::string temp;
+    std::cin >> temp;
 }
 
 void Game::printResult() {

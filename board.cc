@@ -36,7 +36,7 @@ Board::Board() {
 }
 
 Board::Board(Board &board) {
-    for (int i = 0; i < board.pieces.size(); i++) {
+    for (int i = 0; i < (int)board.pieces.size(); i++) {
         pieces.push_back(board.pieces[i]->clone(this));
     }
     if (board.prevMove != nullptr) {
@@ -89,7 +89,7 @@ void Board::makeMove(Move &mv) {
     }
     mv.piece->setRank(mv.newRank);
     mv.piece->setFile(mv.newFile);
-    
+
     prevMove = std::make_unique<Move>(mv);
     mv.piece->executeWhenMoved(mv);
 
