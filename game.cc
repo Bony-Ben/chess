@@ -2,8 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 
-#include "move.h"
+#include "moves/move.h"
 #include "players/player.h"
 
 Game::Game(Board &board, Player &white, Player &black) : board{board}, white{white}, black{black} {}
@@ -18,7 +19,7 @@ void Game::play() {
 
     while (true) {
         player->makeMove(board, turn);
-        history.push_back(board.getPrevMove());
+        history.push_back(std::make_unique<Move>(*board.getPrevMove()));
         if (turn == 'W') {
             turn = 'B';
             opp = player;

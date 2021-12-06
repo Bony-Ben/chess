@@ -1,11 +1,11 @@
 #include "rook.h"
 
 #include "../board.h"
-#include "../move.h"
+#include "../moves/move.h"
 
 Rook::Rook(char colour, int rank, int file, Board &board) : Piece{colour, rank, file, 'r', board} {}
 
-void Rook::getMoves(std::vector<Move> &moves) {
+void Rook::getMoves(std::vector<std::unique_ptr<Move>> &moves) {
     //check for legal moves in upper direction
     for (int i = rank + 1; i < 8; i++) {
         moves.emplace_back(*this, rank, file, i, file, board.getSquare(i, file), false, false, false);

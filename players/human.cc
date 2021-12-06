@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "../board.h"
-#include "../move.h"
+#include "../moves/move.h"
 
 void Human::makeMove(Board &board, char colour) {
     std::string s;
@@ -18,7 +18,7 @@ void Human::makeMove(Board &board, char colour) {
             int endRank = s[1] - '1';
             int endFile = s[0] - 'a';
 
-            std::vector<Move> moves;
+            std::vector<std::unique_ptr<Move>> moves;
             board.getSquare(startRank, startFile)->getMoves(moves);
             for (int i = 0; i < (int)moves.size(); i++) {
                 if (moves[i].newRank == endRank && moves[i].newFile == endFile) {

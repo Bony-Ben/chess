@@ -3,11 +3,11 @@
 #include <iostream>
 
 #include "../board.h"
-#include "../move.h"
+#include "../moves/move.h"
 
 Knight::Knight(char colour, int rank, int file, Board &board) : Piece{colour, rank, file, 'n', board} {}
 
-void Knight::getMoves(std::vector<Move> &moves) {
+void Knight::getMoves(std::vector<std::unique_ptr<Move>> &moves) {
     int horiz[8] = {1, 1, 2, 2, -1, -1, -2, -2};
     int vert[8] = {2, -2, 1, -1, 2, -2, 1, -1};
     for (int i = 0; i < 8; i++) {

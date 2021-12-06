@@ -7,13 +7,13 @@
 #include <vector>
 
 #include "../board.h"
-#include "../move.h"
+#include "../moves/move.h"
 
 void Level1::makeMove(Board &board, char colour) {
     std::string s;
     while (std::cin >> s && s != "move") {
     }
 
-    std::vector<Move> moves = board.getMoves(colour);
-    board.makeMove(moves[rand() % moves.size()]);
+    std::vector<std::unique_ptr<Move>> moves = board.getMoves(colour);
+    board.makeMove(*moves[rand() % moves.size()]);
 }

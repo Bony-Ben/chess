@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "../move.h"
+#include "../moves/move.h"
 
 #ifndef PIECE_H
 #define PIECE_H
@@ -17,7 +17,7 @@ class Piece {
 
    public:
     Piece(char colour, int rank, int file, char letter, Board &board);
-    virtual void getMoves(std::vector<Move> &moves) = 0;
+    virtual void getMoves(std::vector<std::unique_ptr<Move>> &moves) = 0;
     char getColour() const;
     int getRank() const;
     int getFile() const;

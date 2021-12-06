@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 class Board;
-class Move;
 
 class StalemateException {};
 class CheckmateException {};

@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "display/subject.h"
-#include "move.h"
+#include "moves/move.h"
 #include "pieces/piece.h"
 
 #ifndef BOARD_H
@@ -17,9 +17,9 @@ class Board : public Subject {
 
    public:
     Board();
-    Move getPrevMove();
+    Move *getPrevMove();
     Piece *getSquare(int rank, int file);
-    std::vector<Move> getMoves(char colour) const;
+    std::vector<std::unique_ptr<Move>> getMoves(char colour) const;
     std::vector<Piece *> getPieces();
     void makeMove(Move &mv);
 

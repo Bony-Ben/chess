@@ -1,4 +1,4 @@
-VPATH=pieces players display
+VPATH=pieces players display moves
 
 CXX = g++
 CXXFLAGS = -std=c++14 -g -Wall -MMD

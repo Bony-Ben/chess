@@ -4,7 +4,6 @@
 #define HUMAN_H
 
 class Board;
-class Move;
 
 class ResignException {};
 class UndoException {};

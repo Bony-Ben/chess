@@ -10,7 +10,7 @@ class King : public Piece {
 
    public:
     King(char colour, int rank, int file, Board &board);
-    void getMoves(std::vector<Move> &moves) override;
+    void getMoves(std::vector<std::unique_ptr<Move>> &moves) override;
 };
 
 #endif

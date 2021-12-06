@@ -4,7 +4,6 @@
 #define LEVEL1_H
 
 class Board;
-class Move;
 
 class Level1 : public Player {
    public:

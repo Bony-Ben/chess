@@ -3,7 +3,7 @@
 #include <iostream>
 #include <memory>
 
-#include "move.h"
+#include "moves/move.h"
 #include "pieces/bishop.h"
 #include "pieces/king.h"
 #include "pieces/knight.h"
@@ -63,8 +63,8 @@ void Board::updateBoard() {
     notifyObservers();
 }
 
-std::vector<Move> Board::getMoves(char colour) const {
-    std::vector<Move> ans;
+std::vector<std::unique_ptr<Move>> Board::getMoves(char colour) const {
+    std::vector<std::unique_ptr<Move>> ans;
     for (int i = 0; i < (int)pieces.size(); i++) {
         if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour) {
             pieces[i]->getMoves(ans);
@@ -74,17 +74,13 @@ std::vector<Move> Board::getMoves(char colour) const {
 }
 
 void Board::makeMove(Move &mv) {
-    if (mv.captured != nullptr) {
-        mv.captured->setCaptured(true);
-    }
-    mv.piece.setRank(mv.newRank);
-    mv.piece.setFile(mv.newFile);
+    mv.makeMove(*this);
     updateBoard();
     prevMove = std::make_unique<Move>(mv);
 }
 
-Move Board::getPrevMove() {
-    return *prevMove;
+Move *Board::getPrevMove() {
+    return prevMove.get();
 }
 
 std::ostream &operator<<(std::ostream &out, const Board &b) {
