@@ -89,8 +89,11 @@ void Board::makeMove(Move &mv) {
     }
     mv.piece->setRank(mv.newRank);
     mv.piece->setFile(mv.newFile);
-    updateBoard();
+    
     prevMove = std::make_unique<Move>(mv);
+    mv.piece->executeWhenMoved(mv);
+
+    updateBoard();
 }
 
 Move Board::getPrevMove() {

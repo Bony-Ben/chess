@@ -6,6 +6,10 @@
 
 Rook::Rook(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'r', board} {}
 
+void Rook::executeWhenMoved(Move &mv){
+    canCastle=false;
+}
+
 void Rook::getMoves(std::vector<Move> &moves, bool validateChecks) {
     //check for legal moves in upper direction
     for (int i = rank + 1; i < 8; i++) {

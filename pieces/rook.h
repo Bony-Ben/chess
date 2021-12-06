@@ -10,6 +10,7 @@ class Rook : public Piece {
 
    public:
     Rook(char colour, int rank, int file, Board *board);
+    void executeWhenMoved(Move &mv) override;
     void getMoves(std::vector<Move> &moves, bool validateChecks) override;
     std::unique_ptr<Piece> clone(Board * board) const override;
 };
