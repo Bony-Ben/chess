@@ -17,9 +17,10 @@ class Board : public Subject {
 
    public:
     Board();
+    Board(Board &board);
     Move getPrevMove();
     Piece *getSquare(int rank, int file);
-    std::vector<Move> getMoves(char colour) const;
+    std::vector<Move> getMoves(char colour, bool validateChecks) const;
     std::vector<Piece *> getPieces();
     void makeMove(Move &mv);
 

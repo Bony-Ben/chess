@@ -5,5 +5,9 @@
 
 Pawn::Pawn(char colour, int rank, int file, Board &board) : Piece{colour, rank, file, 'p', board} {}
 
-void Pawn::getMoves(std::vector<Move> &moves) {
+void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
+}
+
+std::unique_ptr<Piece> Pawn::clone() const {
+    return std::make_unique<Pawn>(*this);
 }

@@ -3,7 +3,54 @@
 #include <cctype>
 #include <iostream>
 
+#include "../board.h"
+#include "../move.h"
+#include "king.h"
+
 Piece::Piece(char colour, int rank, int file, char letter, Board &board) : colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, captured{false} {}
+
+void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateChecks) {
+    if (mv.capturedPiece != nullptr && mv.piece->colour == mv.capturedPiece->colour) {
+        return;
+    }
+    if (!validateChecks) {
+        moves.push_back(mv);
+        return;
+    }
+
+    Board tempBoard = board;
+
+    Move tempMove = mv;
+    tempMove.piece = tempBoard.getSquare(mv.oldRank, mv.oldFile);
+    if (mv.capturedPiece != nullptr) {
+        tempMove.capturedPiece = tempBoard.getSquare(mv.capturedPiece->getRank(), mv.capturedPiece->getFile());
+    }
+    tempBoard.makeMove(tempMove);
+
+    std::vector<Move> whiteMoves = tempBoard.getMoves('W', false);
+    bool whiteCheck = false;
+    for (int i = 0; i < (int)whiteMoves.size(); i++) {
+        if (dynamic_cast<King *>(whiteMoves[i].capturedPiece) != nullptr) {
+            whiteCheck = true;
+        }
+    }
+
+    std::vector<Move> blackMoves = tempBoard.getMoves('B', false);
+    bool blackCheck = false;
+    for (int i = 0; i < (int)blackMoves.size(); i++) {
+        if (dynamic_cast<King *>(blackMoves[i].capturedPiece) != nullptr) {
+            blackCheck = true;
+        }
+    }
+
+    if (mv.piece->colour == 'W' && !blackCheck) {
+        mv.check = whiteCheck;
+        moves.push_back(mv);
+    } else if (mv.piece->colour == 'B' && !whiteCheck) {
+        mv.check = blackCheck;
+        moves.push_back(mv);
+    }
+}
 
 std::ostream &operator<<(std::ostream &out, const Piece &p) {
     out << (char)((p.colour == 'W') ? toupper(p.letter) : p.letter);

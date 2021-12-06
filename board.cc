@@ -35,6 +35,16 @@ Board::Board() {
     updateBoard();
 }
 
+Board::Board(Board &board) {
+    for (int i = 0; i < board.pieces.size(); i++) {
+        pieces.push_back(board.pieces[i]->clone());
+    }
+    if (board.prevMove != nullptr) {
+        prevMove = std::make_unique<Move>(*board.prevMove);
+    }
+    updateBoard();
+}
+
 Piece *Board::getSquare(int rank, int file) {
     return board[rank][file];
 }
@@ -63,24 +73,30 @@ void Board::updateBoard() {
     notifyObservers();
 }
 
-std::vector<Move> Board::getMoves(char colour) const {
+std::vector<Move> Board::getMoves(char colour, bool validateChecks) const {
     std::vector<Move> ans;
     for (int i = 0; i < (int)pieces.size(); i++) {
+        if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour && validateChecks) {
+            std::cout << ans.size() << std::endl;
+        }
         if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour) {
-            pieces[i]->getMoves(ans);
+            pieces[i]->getMoves(ans, validateChecks);
         }
     }
     return ans;
 }
 
 void Board::makeMove(Move &mv) {
-    if (mv.captured != nullptr) {
-        mv.captured->setCaptured(true);
+    if (mv.capturedPiece != nullptr) {
+        mv.capturedPiece->setCaptured(true);
     }
-    mv.piece.setRank(mv.newRank);
-    mv.piece.setFile(mv.newFile);
+    mv.piece->setRank(mv.newRank);
+    mv.piece->setFile(mv.newFile);
     updateBoard();
     prevMove = std::make_unique<Move>(mv);
+    if (mv.check) {
+        std::cout << "Check!" << std::endl;
+    }
 }
 
 Move Board::getPrevMove() {

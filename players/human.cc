@@ -17,13 +17,20 @@ void Human::makeMove(Board &board, char colour) {
             std::cin >> s;
             int endRank = s[1] - '1';
             int endFile = s[0] - 'a';
+            
+            if (startRank >= 0 && startRank <= 7 &&
+                startFile >= 0 && startFile <= 7 &&
+                endRank >= 0 && endRank <= 7 &&
+                endFile >= 0 && endFile <= 7 &&
+                board.getSquare(startRank, startFile) != nullptr) {
 
-            std::vector<Move> moves;
-            board.getSquare(startRank, startFile)->getMoves(moves);
-            for (int i = 0; i < (int)moves.size(); i++) {
-                if (moves[i].newRank == endRank && moves[i].newFile == endFile) {
-                    board.makeMove(moves[i]);
-                    return;
+                std::vector<Move> moves;
+                board.getSquare(startRank, startFile)->getMoves(moves, true);
+                for (int i = 0; i < (int)moves.size(); i++) {
+                    if (moves[i].newRank == endRank && moves[i].newFile == endFile) {
+                        board.makeMove(moves[i]);
+                        return;
+                    }
                 }
             }
             std::cout << "Invalid Move!" << std ::endl;

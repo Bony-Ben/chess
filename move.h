@@ -5,18 +5,19 @@
 
 class Piece;
 
-struct Move {
-    Piece &piece;
+class Move {
+   public:
+    Piece *piece;
     int oldRank;
     int oldFile;
     int newRank;
     int newFile;
-    Piece *captured;
+    Piece *capturedPiece;
     bool check;
     bool castle;
     bool promotion;
 
-    Move(Piece &piece, int oldRank, int oldFile, int newRank, int newFile, Piece *captured, bool check, bool castle, bool promotion);
+    Move(Piece *piece, int oldRank, int oldFile, int newRank, int newFile, Piece *capturedPiece, bool check, bool castle, bool promotion);
 };
 
 #endif
