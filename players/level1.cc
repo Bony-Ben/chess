@@ -9,12 +9,10 @@
 #include "../board.h"
 #include "../move.h"
 
-void Level1::makeMove(Board &board, char colour) {
+void Level1::makeMove(Board &board, std::vector<Move> &moves, char colour) {
     std::string s;
     while (std::cin >> s && s != "move") {
     }
-
-    std::vector<Move> moves = board.getMoves(colour, true);
 
     board.makeMove(moves[rand() % moves.size()]);
 }

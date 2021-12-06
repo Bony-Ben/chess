@@ -8,6 +8,7 @@
 
 Game::Game(Board &board, Player &white, Player &black) : board{board}, white{white}, black{black} {}
 
+//Players should not call board.getMoves(), instead they should use the moves provided to them.
 void Game::play() {
     board.notifyObservers();
 
@@ -17,7 +18,20 @@ void Game::play() {
     Player *opp = &black;
 
     while (true) {
-        player->makeMove(board, turn);
+        std::vector<Move> moves = board.getMoves(turn, true);
+
+        if (moves.size() == 0) {
+            if (history.size() > 0 && history.back().check) {
+                std::cout << "Checkmate! " << colour << " loses! :(" << std::endl;
+            } else {
+                std::cout << "Stalemate!" << std::endl;
+            }
+            break;
+        } else if (history.size() > 0 && history.back().check) {
+            std::cout << "Check!" << std::endl;
+        }
+
+        player->makeMove(board, moves, turn);
         history.push_back(board.getPrevMove());
         if (turn == 'W') {
             turn = 'B';
@@ -31,7 +45,6 @@ void Game::play() {
             colour = "White";
         }
     }
-    printResult();
 }
 
 void Game::printResult() {

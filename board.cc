@@ -79,9 +79,6 @@ std::vector<Move> Board::getMoves(char colour, bool validateChecks) const {
         if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour) {
             pieces[i]->getMoves(ans, validateChecks);
         }
-        if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour && validateChecks) {
-            std::cout << ans.size() << std::endl;
-        }
     }
     return ans;
 }
@@ -94,9 +91,6 @@ void Board::makeMove(Move &mv) {
     mv.piece->setFile(mv.newFile);
     updateBoard();
     prevMove = std::make_unique<Move>(mv);
-    if (mv.check) {
-        std::cout << "Check!" << std::endl;
-    }
 }
 
 Move Board::getPrevMove() {

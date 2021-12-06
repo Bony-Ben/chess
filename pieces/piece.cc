@@ -26,7 +26,7 @@ void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateCheck
     }
     tempBoard.makeMove(tempMove);
 
-    std:: cout << tempBoard << std::endl;
+    //std::cout << tempBoard << std::endl;
 
     std::vector<Move> whiteMoves = tempBoard.getMoves('W', false);
     bool whiteCheck = false;

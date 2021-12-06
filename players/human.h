@@ -11,7 +11,7 @@ class UndoException {};
 
 class Human : public Player {
    public:
-    void makeMove(Board &board, char colour) override;
+    void makeMove(Board &board, std::vector<Move> &moves, char colour) override;
 };
 
 #endif
