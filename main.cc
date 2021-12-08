@@ -9,6 +9,8 @@
 #include "players/level2.h"
 
 int main() {
+    srand(time(NULL));
+
     Level2 white;
     Human black;
     Board board;
