@@ -16,7 +16,7 @@ int main() {
     Board board;
     TextObserver tobs{&board};
     GraphicsObserver gobs{&board};
-    Game game{board, white, black};
+    Game game{board, white, black, 'B'};
     game.play();
     return 0;
 }

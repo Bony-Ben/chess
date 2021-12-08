@@ -13,10 +13,11 @@ class Game {
     Board &board;
     Player &white;
     Player &black;
+    char first;
     std::vector<Move> history;
 
    public:
-    Game(Board &board, Player &white, Player &black);
+    Game(Board &board, Player &white, Player &black, char first);
     void play();
     void printResult();
 };
