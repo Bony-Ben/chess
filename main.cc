@@ -6,10 +6,11 @@
 #include "game.h"
 #include "players/human.h"
 #include "players/level1.h"
+#include "players/level2.h"
 
 int main() {
-    Human white;
-    Level1 black;
+    Level2 white;
+    Human black;
     Board board;
     TextObserver tobs{&board};
     GraphicsObserver gobs{&board};
