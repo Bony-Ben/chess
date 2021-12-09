@@ -96,6 +96,23 @@ void Board::makeMove(Move &mv) {
     updateBoard();
 }
 
+Piece *Board::addPiece(char piece, char colour) {
+    if (piece == 'r') {
+        pieces.push_back(std::make_unique<Rook>(colour, 0, 0, this));
+    } else if (piece == 'n') {
+        pieces.push_back(std::make_unique<Knight>(colour, 0, 0, this));
+    } else if (piece == 'b') {
+        pieces.push_back(std::make_unique<Bishop>(colour, 0, 0, this));
+    } else if (piece == 'q') {
+        pieces.push_back(std::make_unique<Queen>(colour, 0, 0, this));
+    } else if (piece == 'k') {
+        pieces.push_back(std::make_unique<King>(colour, 0, 0, this));
+    } else {
+        pieces.push_back(std::make_unique<Pawn>(colour, 0, 0, this));
+    }
+    return pieces.back().get();
+}
+
 Move Board::getPrevMove() {
     return *prevMove;
 }

@@ -13,16 +13,16 @@ class Board : public Subject {
     Piece *board[8][8];
     std::unique_ptr<Move> prevMove;
 
-    void updateBoard();
-
    public:
     Board();
     Board(Board &board);
+    void updateBoard();
     Move getPrevMove();
     Piece *getSquare(int rank, int file);
     std::vector<Move> getMoves(char colour, bool validateChecks) const;
     std::vector<Piece *> getPieces();
     void makeMove(Move &mv);
+    Piece *addPiece(char piece, char colour);
 
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
