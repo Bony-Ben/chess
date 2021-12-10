@@ -25,6 +25,7 @@ class Board : public Subject {
     std::vector<Piece *> getPieces();
     void makeMove(Move &mv);
     Piece *addPiece(char piece, char colour);
+    void deletePiece(int rank, int file);
 
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };

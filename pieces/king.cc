@@ -1,5 +1,7 @@
 #include "king.h"
+
 #include <memory>
+
 #include "../board.h"
 #include "../move.h"
 #include "rook.h"
@@ -21,7 +23,7 @@ void King::getMoves(std::vector<Move> &moves, bool validateChecks) {
             addMoveIfValid(Move(this, rank, file, newrank, newfile, occupant, false, false, false), moves, validateChecks);
         }
     }
-    if (canCastle) {
+    if (canCastle && validateChecks && !board->isCheck(colour == 'B' ? 'W' : 'B')) {
         int castleRank = 0;
         if (colour == 'B') {
             castleRank = 7;
@@ -34,7 +36,8 @@ void King::getMoves(std::vector<Move> &moves, bool validateChecks) {
                 addMoveIfValid(Move(this, rank, file, castleRank, 6, nullptr, false, true, false), moves, validateChecks);
             }
         }
-        if (board->getSquare(castleRank, 3) == nullptr && board->getSquare(castleRank, 2) == nullptr && aRook != nullptr && aRook->getCanCastle()) {
+        if (board->getSquare(castleRank, 3) == nullptr && board->getSquare(castleRank, 2) == nullptr &&
+            board->getSquare(castleRank, 1) == nullptr && aRook != nullptr && aRook->getCanCastle()) {
             auto tempBoard = board->getBoardAfterMove(Move(this, rank, file, castleRank, 3, nullptr, false, false, false));
             if (!tempBoard->isCheck(colour == 'B' ? 'W' : 'B')) {
                 addMoveIfValid(Move(this, rank, file, castleRank, 2, nullptr, false, true, false), moves, validateChecks);

@@ -8,8 +8,8 @@
 
 Game::Game(Board &board, Player &white, Player &black, char first) : board{board}, white{white}, black{black}, first{first} {}
 
-//Players should not call board.getMoves(), instead they should use the moves provided to them.
-void Game::play() {
+// Players should not call board.getMoves(), instead they should use the moves provided to them.
+void Game::play(double &whiteScore, double &blackScore) {
     board.notifyObservers();
     char turn;
     std::string colour;
@@ -33,17 +33,24 @@ void Game::play() {
         if (moves.size() == 0) {
             if (history.size() > 0 && history.back().check) {
                 std::cout << "Checkmate! " << colour << " loses! :(" << std::endl;
+                if (turn == 'W') {
+                    blackScore += 1;
+                } else {
+                    whiteScore += 1;
+                }
             } else {
                 std::cout << "Stalemate!" << std::endl;
+                blackScore += 0.5;
+                whiteScore += 0.5;
             }
             break;
         } else if (history.size() > 0 && history.back().check) {
             std::cout << colour << " is in check!" << std::endl;
         }
-        std::cout << colour << "'s turn: "; //for debugging
+        std::cout << colour << "'s turn: ";  // for debugging
         player->makeMove(board, moves, turn);
         history.push_back(board.getPrevMove());
-        std::swap(player,opp);
+        std::swap(player, opp);
         if (turn == 'W') {
             turn = 'B';
             colour = "Black";
@@ -54,10 +61,4 @@ void Game::play() {
     }
     std::string temp;
     std::cin >> temp;
-}
-
-void Game::printResult() {
-    std::cout << "Final Score:" << std::endl;
-    std::cout << "White: " << white.getScore() << std::endl;
-    std::cout << "Black: " << black.getScore() << std::endl;
 }
