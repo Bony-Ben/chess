@@ -12,10 +12,10 @@
 #include "pieces/rook.h"
 
 Board::Board() {
-    pieces.push_back(std::make_unique<Rook>('W', 0, 0, this));
-    pieces.push_back(std::make_unique<Rook>('W', 0, 7, this));
-    pieces.push_back(std::make_unique<Rook>('B', 7, 0, this));
-    pieces.push_back(std::make_unique<Rook>('B', 7, 7, this));
+    pieces.push_back(std::make_unique<Rook>('W', 0, 0, this, true));
+    pieces.push_back(std::make_unique<Rook>('W', 0, 7, this, true));
+    pieces.push_back(std::make_unique<Rook>('B', 7, 0, this, true));
+    pieces.push_back(std::make_unique<Rook>('B', 7, 7, this, true));
     pieces.push_back(std::make_unique<Knight>('W', 0, 1, this));
     pieces.push_back(std::make_unique<Knight>('W', 0, 6, this));
     pieces.push_back(std::make_unique<Knight>('B', 7, 1, this));
@@ -26,8 +26,8 @@ Board::Board() {
     pieces.push_back(std::make_unique<Bishop>('B', 7, 5, this));
     pieces.push_back(std::make_unique<Queen>('W', 0, 3, this));
     pieces.push_back(std::make_unique<Queen>('B', 7, 3, this));
-    pieces.push_back(std::make_unique<King>('W', 0, 4, this));
-    pieces.push_back(std::make_unique<King>('B', 7, 4, this));
+    pieces.push_back(std::make_unique<King>('W', 0, 4, this, true));
+    pieces.push_back(std::make_unique<King>('B', 7, 4, this, true));
     // for (int i = 0; i < 8; i++) {
     //     pieces.push_back(std::make_unique<Pawn>('W', 1, i, this));
     //     pieces.push_back(std::make_unique<Pawn>('B', 6, i, this));
@@ -43,6 +43,27 @@ Board::Board(Board &board) {
         prevMove = std::make_unique<Move>(*board.prevMove);
     }
     updateBoard();
+}
+
+bool Board::isCheck(char colour) {
+    std::vector<Move> moves = getMoves(colour, false);
+    for (int i = 0; i < (int)moves.size(); i++) {
+        if (dynamic_cast<King *>(moves[i].capturedPiece) != nullptr) {
+            return true;
+        }
+    }
+    return false;
+}
+
+std::unique_ptr<Board> Board::getBoardAfterMove(Move mv) {
+    auto tempBoard = std::make_unique<Board>(*this);
+    Move tempMove = mv;
+    tempMove.piece = tempBoard->getSquare(mv.oldRank, mv.oldFile);
+    if (mv.capturedPiece != nullptr) {
+        tempMove.capturedPiece = tempBoard->getSquare(mv.capturedPiece->getRank(), mv.capturedPiece->getFile());
+    }
+    tempBoard->makeMove(tempMove);
+    return tempBoard;
 }
 
 Piece *Board::getSquare(int rank, int file) {
@@ -89,16 +110,27 @@ void Board::makeMove(Move &mv) {
     }
     mv.piece->setRank(mv.newRank);
     mv.piece->setFile(mv.newFile);
-
-    prevMove = std::make_unique<Move>(mv);
     mv.piece->executeWhenMoved(mv);
 
+    if (mv.castle) {
+        Piece *rook;
+        if (mv.newFile == 6) {
+            rook = board[mv.newRank][7];
+            rook->setFile(5);
+        } else if (mv.newFile == 2) {
+            rook = board[mv.newRank][0];
+            rook->setFile(3);
+        }
+        rook->executeWhenMoved(mv);
+    }
+
+    prevMove = std::make_unique<Move>(mv);
     updateBoard();
 }
 
 Piece *Board::addPiece(char piece, char colour) {
     if (piece == 'r') {
-        pieces.push_back(std::make_unique<Rook>(colour, 0, 0, this));
+        pieces.push_back(std::make_unique<Rook>(colour, 0, 0, this, false));
     } else if (piece == 'n') {
         pieces.push_back(std::make_unique<Knight>(colour, 0, 0, this));
     } else if (piece == 'b') {
@@ -106,7 +138,7 @@ Piece *Board::addPiece(char piece, char colour) {
     } else if (piece == 'q') {
         pieces.push_back(std::make_unique<Queen>(colour, 0, 0, this));
     } else if (piece == 'k') {
-        pieces.push_back(std::make_unique<King>(colour, 0, 0, this));
+        pieces.push_back(std::make_unique<King>(colour, 0, 0, this, false));
     } else {
         pieces.push_back(std::make_unique<Pawn>(colour, 0, 0, this));
     }

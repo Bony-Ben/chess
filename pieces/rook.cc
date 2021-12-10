@@ -4,7 +4,7 @@
 #include "../board.h"
 #include "../move.h"
 
-Rook::Rook(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'r', board} {}
+Rook::Rook(char colour, int rank, int file, Board *board, bool canCastle) : Piece{colour, rank, file, 'r', board}, canCastle{canCastle} {}
 
 void Rook::executeWhenMoved(Move &mv){
     canCastle=false;
@@ -39,6 +39,10 @@ void Rook::getMoves(std::vector<Move> &moves, bool validateChecks) {
             break;
         }
     }
+}
+
+bool Rook::getCanCastle(){
+    return canCastle;
 }
 
 std::unique_ptr<Piece> Rook::clone(Board * board) const {

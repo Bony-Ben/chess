@@ -42,6 +42,7 @@ void setup(Board &board) {
 }
 
 int main() {
+    srand(time(0));
     while (true) {
         std::string command;
         std::cin >> command;
@@ -51,9 +52,9 @@ int main() {
         if (std::cin.eof()) {
             break;
         } else if (command == "game") {
-            Level1 white;
+            Human white;
             Human black;
-            Game game{board, white, black, 'B'};
+            Game game{board, white, black, 'W'};
             game.play();
         } else if (command == "setup") {
             setup(board);

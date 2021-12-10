@@ -2,6 +2,7 @@
 
 #include <cctype>
 #include <iostream>
+#include <memory>
 
 #include "../board.h"
 #include "../move.h"
@@ -19,34 +20,10 @@ void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateCheck
         moves.push_back(mv);
         return;
     }
+    auto tempBoard = board->getBoardAfterMove(mv);
 
-    Board tempBoard = *board;
-    Move tempMove = mv;
-    tempMove.piece = tempBoard.getSquare(mv.oldRank, mv.oldFile);
-    if (mv.capturedPiece != nullptr) {
-        tempMove.capturedPiece = tempBoard.getSquare(mv.capturedPiece->rank, mv.capturedPiece->file);
-    }
-    tempBoard.makeMove(tempMove);
-
-    //std::cout << tempBoard << std::endl;
-
-    std::vector<Move> whiteMoves = tempBoard.getMoves('W', false);
-    bool whiteCheck = false;
-    for (int i = 0; i < (int)whiteMoves.size(); i++) {
-        if (dynamic_cast<King *>(whiteMoves[i].capturedPiece) != nullptr) {
-            whiteCheck = true;
-            break;
-        }
-    }
-
-    std::vector<Move> blackMoves = tempBoard.getMoves('B', false);
-    bool blackCheck = false;
-    for (int i = 0; i < (int)blackMoves.size(); i++) {
-        if (dynamic_cast<King *>(blackMoves[i].capturedPiece) != nullptr) {
-            blackCheck = true;
-            break;
-        }
-    }
+    bool whiteCheck = tempBoard->isCheck('W');
+    bool blackCheck = tempBoard->isCheck('B');
 
     if (colour == 'W' && !blackCheck) {
         mv.check = whiteCheck;
