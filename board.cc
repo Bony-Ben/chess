@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <memory>
+#include <string>
 
 #include "move.h"
 #include "pieces/bishop.h"
@@ -111,6 +112,17 @@ Piece *Board::addPiece(char piece, char colour) {
         pieces.push_back(std::make_unique<Pawn>(colour, 0, 0, this));
     }
     return pieces.back().get();
+}
+
+void Board::deletePiece(int rank, int file) {
+    int count = 0;
+    for (auto &p : pieces) {
+        if (!p->isCaptured() && p->getRank() == rank && p->getFile() == file) {
+            pieces.erase(pieces.begin() + count);
+            break;
+        }
+        count++;
+    }
 }
 
 Move Board::getPrevMove() {

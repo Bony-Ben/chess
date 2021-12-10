@@ -16,13 +16,14 @@ class Board : public Subject {
    public:
     Board();
     Board(Board &board);
-    void updateBoard();
     Move getPrevMove();
     Piece *getSquare(int rank, int file);
     std::vector<Move> getMoves(char colour, bool validateChecks) const;
     std::vector<Piece *> getPieces();
+    void updateBoard();
     void makeMove(Move &mv);
     Piece *addPiece(char piece, char colour);
+    void deletePiece(int rank, int file);
 
     friend std::ostream &operator<<(std::ostream &out, const Board &b);
 };
