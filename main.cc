@@ -52,20 +52,26 @@ int main() {
     Board board;
     TextObserver tobs{&board};
     char first = 'W';
+    double whiteScore = 0.0;
+    double blackScore = 0.0;
     // GraphicsObserver gobs{&board};
     while (true) {
         std::string command;
         std::cin >> command;
         if (std::cin.eof()) {
             break;
-        } else if (command == "game") {
+        }
+        if (command == "game") {
             Level1 white;
             Human black;
             Game game{board, white, black, first};
-            game.play();
+            game.play(whiteScore, blackScore);
             first = 'W';
         } else if (command == "setup") {
             setup(board, first);
         }
     }
+    std::cout << "Final Score:" << std::endl;
+    std::cout << "White: " << whiteScore << std::endl;
+    std::cout << "Black: " << blackScore << std::endl;
 }
