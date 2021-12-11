@@ -62,6 +62,11 @@ void Game::play(double &whiteScore, double &blackScore) {
             }
         } catch (ResignException e) {
             std::cout << (turn == 'W' ? "Black" : "White") << " wins!" << std::endl;
+            if (turn == 'W') {
+                blackScore += 1;
+            } else {
+                whiteScore += 1;
+            }
             break;
         }
     }
