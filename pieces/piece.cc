@@ -8,7 +8,7 @@
 #include "../move.h"
 #include "king.h"
 
-Piece::Piece(char colour, int rank, int file, char letter, Board *board, int value) : colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, value{value}, captured{false} {}
+Piece::Piece(char colour, int rank, int file, char letter, Board *board, int value) : value{value}, colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, captured{false} {}
 
 void Piece::executeWhenMoved(Move &mv) {}
 
