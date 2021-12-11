@@ -32,7 +32,12 @@ void Game::play(double &whiteScore, double &blackScore) {
 
         if (moves.size() == 0) {
             if (history.size() > 0 && history.back().check) {
-                std::cout << "Checkmate! " << colour << " loses! :(" << std::endl;
+                std::cout << "Checkmate! "
+                          << (turn ==
+                                      'W'
+                                  ? "Black"
+                                  : "White")
+                          << " wins!" << std::endl;
                 if (turn == 'W') {
                     blackScore += 1;
                 } else {
@@ -59,6 +64,7 @@ void Game::play(double &whiteScore, double &blackScore) {
             colour = "White";
         }
     }
+    std::cout << "Enter any input to continue..." << std::endl;
     std::string temp;
     std::cin >> temp;
 }

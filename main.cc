@@ -52,10 +52,10 @@ int main() {
     srand(time(0));
     Board board;
     TextObserver tobs{&board};
+    GraphicsObserver gobs{&board};
     char first = 'W';
     double whiteScore = 0.0;
     double blackScore = 0.0;
-    // GraphicsObserver gobs{&board};
     while (true) {
         std::string command;
         std::cin >> command;
@@ -68,6 +68,10 @@ int main() {
             Game game{board, white, black, first};
             game.play(whiteScore, blackScore);
             first = 'W';
+
+            board.detach(&tobs);
+            board.reset();
+            board.attach(&tobs);
         } else if (command == "setup") {
             setup(board, first);
         }

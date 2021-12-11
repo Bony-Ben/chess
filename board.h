@@ -16,6 +16,7 @@ class Board : public Subject {
    public:
     Board();
     Board(Board &board);
+    void reset();
     void updateBoard();
     bool isCheck(char colour);
     std::unique_ptr<Board> getBoardAfterMove(Move mv);

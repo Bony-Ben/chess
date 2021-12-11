@@ -13,6 +13,13 @@
 #include "pieces/rook.h"
 
 Board::Board() {
+    reset();
+}
+
+void Board::reset() {
+    prevMove = std::unique_ptr<Move>{};
+    pieces.clear();
+
     pieces.push_back(std::make_unique<Rook>('W', 0, 0, this, true));
     pieces.push_back(std::make_unique<Rook>('W', 0, 7, this, true));
     pieces.push_back(std::make_unique<Rook>('B', 7, 0, this, true));
@@ -21,8 +28,8 @@ Board::Board() {
     pieces.push_back(std::make_unique<Knight>('W', 0, 6, this));
     pieces.push_back(std::make_unique<Knight>('B', 7, 1, this));
     pieces.push_back(std::make_unique<Knight>('B', 7, 6, this));
-    pieces.push_back(std::make_unique<Bishop>('W', 0, 2, this));
     pieces.push_back(std::make_unique<Bishop>('W', 0, 5, this));
+    pieces.push_back(std::make_unique<Bishop>('W', 0, 2, this));
     pieces.push_back(std::make_unique<Bishop>('B', 7, 2, this));
     pieces.push_back(std::make_unique<Bishop>('B', 7, 5, this));
     pieces.push_back(std::make_unique<Queen>('W', 0, 3, this));
