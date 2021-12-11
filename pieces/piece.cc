@@ -8,7 +8,7 @@
 #include "../move.h"
 #include "king.h"
 
-Piece::Piece(char colour, int rank, int file, char letter, Board *board) : colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, captured{false} {}
+Piece::Piece(char colour, int rank, int file, char letter, Board *board, int value) : colour{colour}, rank{rank}, file{file}, letter{letter}, board{board}, value{value}, captured{false} {}
 
 void Piece::executeWhenMoved(Move &mv) {}
 
@@ -57,6 +57,10 @@ char Piece::getLetter() const {
 
 bool Piece::isCaptured() const {
     return captured;
+}
+
+int Piece::getValue() const {
+    return value;
 }
 
 void Piece::setRank(int r) {

@@ -3,7 +3,7 @@
 #include "../board.h"
 #include "../move.h"
 
-Bishop::Bishop(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'b', board} {}
+Bishop::Bishop(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'b', board, 3} {}
 
 void Bishop::getMoves(std::vector<Move> &moves, bool validateChecks) {
     //check for legal moves in top right direction

@@ -3,7 +3,7 @@
 #include "../board.h"
 #include "../move.h"
 
-Queen::Queen(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'q', board} {}
+Queen::Queen(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'q', board, 9} {}
 
 void Queen::getMoves(std::vector<Move> &moves, bool validateChecks) {
     // check for legal moves in upper direction

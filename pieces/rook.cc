@@ -4,7 +4,7 @@
 #include "../board.h"
 #include "../move.h"
 
-Rook::Rook(char colour, int rank, int file, Board *board, bool canCastle) : Piece{colour, rank, file, 'r', board}, canCastle{canCastle} {}
+Rook::Rook(char colour, int rank, int file, Board *board, bool canCastle) : Piece{colour, rank, file, 'r', board, 5}, canCastle{canCastle} {}
 
 void Rook::executeWhenMoved(Move &mv){
     canCastle=false;

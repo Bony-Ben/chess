@@ -3,7 +3,7 @@
 #include "../board.h"
 #include "../move.h"
 
-Pawn::Pawn(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'p', board} {}
+Pawn::Pawn(char colour, int rank, int file, Board *board) : Piece{colour, rank, file, 'p', board, 1} {}
 
 void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
   int direction = -1;
