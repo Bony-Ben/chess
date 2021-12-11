@@ -10,11 +10,16 @@
 
 void setup(Board &board, char &first) {
     std::cout << "~~~ Setup Mode ~~~" << std::endl;
+    board.notifyObservers();
     while (true) {
         std::string command;
         std::cin >> command;
         if (command == "done") {
-            break;
+            if (board.isValidBoard()) {
+                break;
+            } else {
+                std::cout << "Sorry, your board is not in a valid state." << std::endl;
+            }
         } else if (command == "+") {
             char piece;
             char colour;

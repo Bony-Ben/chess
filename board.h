@@ -18,6 +18,7 @@ class Board : public Subject {
     Board(Board &board);
     void reset();
     void updateBoard();
+    bool isValidBoard();
     bool isCheck(char colour);
     std::unique_ptr<Board> getBoardAfterMove(Move mv);
     Move getPrevMove();

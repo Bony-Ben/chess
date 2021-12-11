@@ -53,6 +53,28 @@ Board::Board(Board &board) {
     updateBoard();
 }
 
+bool Board::isValidBoard() {
+    for (int i = 0; i < 8; i++) {
+        if (dynamic_cast<Pawn *>(board[0][i]) != nullptr || dynamic_cast<Pawn *>(board[7][i]) != nullptr) {
+            return false;
+        }
+    }
+    int whiteKingCount = 0;
+    int blackKingCount = 0;
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (dynamic_cast<King *>(board[i][j]) != nullptr) {
+                if (board[i][j]->getColour() == 'W') {
+                    whiteKingCount++;
+                } else {
+                    blackKingCount++;
+                }
+            }
+        }
+    }
+    return whiteKingCount == 1 && blackKingCount == 1 && !isCheck('W') && !isCheck('B');
+}
+
 bool Board::isCheck(char colour) {
     std::vector<Move> moves = getMoves(colour, false);
     for (int i = 0; i < (int)moves.size(); i++) {
