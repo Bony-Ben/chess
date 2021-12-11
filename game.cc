@@ -11,7 +11,6 @@ Game::Game(Board &board, Player &white, Player &black, char first) : board{board
 
 // Players should not call board.getMoves(), instead they should use the moves provided to them.
 void Game::play(double &whiteScore, double &blackScore) {
-    std::cout << "~~~ Game Mode ~~~" << std::endl;
     board.notifyObservers();
     char turn;
     std::string colour;
@@ -69,5 +68,4 @@ void Game::play(double &whiteScore, double &blackScore) {
     std::cout << "Enter any input to continue..." << std::endl;
     std::string temp;
     std::cin >> temp;
-    std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
 }
