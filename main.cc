@@ -53,6 +53,20 @@ void setup(Board &board, char &first) {
     std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
 }
 
+std::unique_ptr<Player> createPlayer() {
+    std::string temp;
+    std::cin >> temp;
+    if (temp.substr(0, temp.size() - 1) == "computer") {
+        int level = temp[temp.size() - 1] - '0';
+        if (level == 1) {
+            return std::make_unique<Level1>();
+        } else if (level == 2) {
+            return std::make_unique<Level2>();
+        }
+    }
+    return std::make_unique<Human>();
+}
+
 int main() {
     srand(time(0));
     Board board;
@@ -65,9 +79,10 @@ int main() {
     std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
     while (std::cin >> command) {
         if (command == "game") {
-            Human white;
-            Human black;
-            Game game{board, white, black, first};
+            std::unique_ptr<Player> white = createPlayer();
+            std::unique_ptr<Player> black = createPlayer();
+
+            Game game{board, *white, *black, first};
             game.play(whiteScore, blackScore);
             first = 'W';
 
