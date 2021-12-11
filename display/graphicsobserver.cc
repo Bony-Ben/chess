@@ -8,9 +8,7 @@ GraphicsObserver::GraphicsObserver(Board *board) : board{board} {
     bool white = true;
     for (int y = 0; y <= 630; y += 90) {
         for (int x = 0; x <= 630; x += 90) {
-            if (white) {
-                w->fillRectangle(x, y, 90, 90, Xwindow::White);
-            } else {
+            if (!white) {
                 w->fillRectangle(x, y, 90, 90);
             }
             white = !white;
