@@ -21,7 +21,7 @@ class Board : public Subject {
     bool isValidBoard();
     bool isCheck(char colour);
     std::unique_ptr<Board> getBoardAfterMove(Move mv);
-    Move getPrevMove();
+    Move &getPrevMove();
     Piece *getSquare(int rank, int file);
     std::vector<Move> getMoves(char colour, bool validateChecks) const;
     std::vector<Piece *> getPieces();

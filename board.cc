@@ -186,7 +186,7 @@ void Board::deletePiece(int rank, int file) {
     }
 }
 
-Move Board::getPrevMove() {
+Move &Board::getPrevMove() {
     return *prevMove;
 }
 
