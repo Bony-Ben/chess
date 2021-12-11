@@ -36,10 +36,10 @@ void Board::reset() {
     pieces.push_back(std::make_unique<Queen>('B', 7, 3, this));
     pieces.push_back(std::make_unique<King>('W', 0, 4, this, true));
     pieces.push_back(std::make_unique<King>('B', 7, 4, this, true));
-    // for (int i = 0; i < 8; i++) {
-    //     pieces.push_back(std::make_unique<Pawn>('W', 1, i, this));
-    //     pieces.push_back(std::make_unique<Pawn>('B', 6, i, this));
-    // }
+    for (int i = 0; i < 8; i++) {
+        pieces.push_back(std::make_unique<Pawn>('W', 1, i, this));
+        pieces.push_back(std::make_unique<Pawn>('B', 6, i, this));
+    }
     updateBoard();
 }
 
