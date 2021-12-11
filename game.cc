@@ -4,6 +4,7 @@
 #include <string>
 
 #include "move.h"
+#include "players/human.h"
 #include "players/player.h"
 
 Game::Game(Board &board, Player &white, Player &black, char first) : board{board}, white{white}, black{black}, first{first} {}
@@ -32,12 +33,7 @@ void Game::play(double &whiteScore, double &blackScore) {
 
         if (moves.size() == 0) {
             if (history.size() > 0 && history.back().check) {
-                std::cout << "Checkmate! "
-                          << (turn ==
-                                      'W'
-                                  ? "Black"
-                                  : "White")
-                          << " wins!" << std::endl;
+                std::cout << "Checkmate! " << (turn == 'W' ? "Black" : "White") << " wins!" << std::endl;
                 if (turn == 'W') {
                     blackScore += 1;
                 } else {
@@ -53,15 +49,20 @@ void Game::play(double &whiteScore, double &blackScore) {
             std::cout << colour << " is in check!" << std::endl;
         }
         std::cout << colour << "'s turn: ";  // for debugging
-        player->makeMove(board, moves, turn);
-        history.push_back(board.getPrevMove());
-        std::swap(player, opp);
-        if (turn == 'W') {
-            turn = 'B';
-            colour = "Black";
-        } else {
-            turn = 'W';
-            colour = "White";
+        try {
+            player->makeMove(board, moves, turn);
+            history.push_back(board.getPrevMove());
+            std::swap(player, opp);
+            if (turn == 'W') {
+                turn = 'B';
+                colour = "Black";
+            } else {
+                turn = 'W';
+                colour = "White";
+            }
+        } catch (ResignException e) {
+            std::cout << (turn == 'W' ? "Black" : "White") << " wins!" << std::endl;
+            break;
         }
     }
     std::cout << "Enter any input to continue..." << std::endl;

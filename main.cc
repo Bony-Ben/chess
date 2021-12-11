@@ -61,12 +61,9 @@ int main() {
     char first = 'W';
     double whiteScore = 0.0;
     double blackScore = 0.0;
-    while (true) {
-        std::string command;
-        std::cin >> command;
-        if (std::cin.eof()) {
-            break;
-        }
+    std::string command;
+    std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
+    while (std::cin >> command) {
         if (command == "game") {
             Human white;
             Human black;
@@ -80,6 +77,7 @@ int main() {
         } else if (command == "setup") {
             setup(board, first);
         }
+        std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
     }
     std::cout << "Final Score:" << std::endl;
     std::cout << "White: " << whiteScore << std::endl;

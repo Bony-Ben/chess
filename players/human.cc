@@ -24,6 +24,8 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                 }
             }
             std::cout << "Invalid Move!" << std ::endl;
+        } else if (s == "resign") {
+            throw ResignException{};
         }
     }
 }
