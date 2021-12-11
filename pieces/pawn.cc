@@ -22,7 +22,7 @@ void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
   }
 
   // first move- two steps forwards
-  if (rank == firstMove && board->getSquare(rank + 2*direction, file) == nullptr) {
+  if (rank == firstMove && board->getSquare(rank + 2*direction, file) == nullptr && board->getSquare(rank + direction, file) == nullptr) {
     addMoveIfValid(Move(this, rank, file, rank + 2*direction, file, nullptr,  false, false, false), moves, validateChecks);
   }
 
