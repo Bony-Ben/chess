@@ -5,15 +5,6 @@
 
 GraphicsObserver::GraphicsObserver(Board *board) : board{board} {
     w = new Xwindow(720, 720);
-    board->attach(this);
-}
-
-GraphicsObserver::~GraphicsObserver() {
-    delete w;
-    board->detach(this);
-}
-
-void GraphicsObserver::notify() {
     bool white = true;
     for (int y = 0; y <= 630; y += 90) {
         for (int x = 0; x <= 630; x += 90) {
@@ -35,6 +26,35 @@ void GraphicsObserver::notify() {
         w->drawString(y + 90, 710, std::string(1, alph_label + 1), Xwindow::Black);
         num_label -= 2;
         alph_label += 2;
+    }
+    std::vector<Piece *> pieces = board->getPieces();
+    for (auto p : pieces) {
+        if ((p->getRank() % 2) != (p->getFile() % 2)) {
+            w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::Black);
+        } else {
+            w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::White);
+        }
+    }
+    board->attach(this);
+}
+
+GraphicsObserver::~GraphicsObserver() {
+    delete w;
+    board->detach(this);
+}
+
+void GraphicsObserver::notify() {
+    bool white = true;
+    for (int y = 0; y <= 630; y += 90) {
+        for (int x = 0; x <= 630; x += 90) {
+            if (white) {
+                w->fillRectangle(x + 35, y + 35, 20, 20, Xwindow::White);
+            } else {
+                w->fillRectangle(x + 35, y + 35, 20, 20);
+            }
+            white = !white;
+        }
+        white = !white;
     }
     std::vector<Piece *> pieces = board->getPieces();
     for (auto p : pieces) {
