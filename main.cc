@@ -151,38 +151,41 @@ int main() {
     double blackScore = 0.0;
     std::string command;
     std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
-    while (std::getline(std::cin, command)) {
-        try {
-            std::vector<std::string> input = parseLine(command);
-            if (input.size() == 0) {
-                throw InputException{};
-            }
-            command = input.at(0);
-            if (command == "game") {
-                if (input.size() < 3) {
+    try {
+        while (std::getline(std::cin, command)) {
+            try {
+                std::vector<std::string> input = parseLine(command);
+                if (input.size() == 0) {
                     throw InputException{};
                 }
-                std::unique_ptr<Player> white = createPlayer(input.at(1));
-                std::unique_ptr<Player> black = createPlayer(input.at(2));
-                Game game{board, *white, *black, first};
-                game.play(whiteScore, blackScore);
-                first = 'W';
+                command = input.at(0);
+                if (command == "game") {
+                    if (input.size() < 3) {
+                        throw InputException{};
+                    }
+                    std::unique_ptr<Player> white = createPlayer(input.at(1));
+                    std::unique_ptr<Player> black = createPlayer(input.at(2));
+                    Game game{board, *white, *black, first};
+                    game.play(whiteScore, blackScore);
+                    first = 'W';
 
-                board.detach(&tobs);
-                board.reset();
-                board.attach(&tobs);
-            } else if (command == "setup") {
-                setup(board, first);
-            } else {
-                throw InputException{};
+                    board.detach(&tobs);
+                    board.reset();
+                    board.attach(&tobs);
+                } else if (command == "setup") {
+                    setup(board, first);
+                } else {
+                    throw InputException{};
+                }
+            } catch (InputException i) {
+                std::cout << "Invalid command. Please try again." << std::endl;
+                continue;
             }
-        } catch (InputException i) {
-            std::cout << "Invalid command. Please try again." << std::endl;
-            continue;
+            std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
         }
-        std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
+    } catch (EndOfFileException e) {
     }
-    std::cout << "Final Score:" << std::endl;
+    std::cout << "\nFinal Score:" << std::endl;
     std::cout << "White: " << whiteScore << std::endl;
     std::cout << "Black: " << blackScore << std::endl;
 }

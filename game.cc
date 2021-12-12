@@ -70,7 +70,8 @@ void Game::play(double &whiteScore, double &blackScore) {
             colour = "White";
         }
     }
-    std::cout << "Enter any input to continue..." << std::endl;
+    std::cout << "Press enter to continue..." << std::endl;
     std::string temp;
-    std::cin >> temp;
+    std::getline(std::cin, temp);
+    std::getline(std::cin, temp);
 }

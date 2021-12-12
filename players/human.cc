@@ -28,4 +28,5 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             throw ResignException{};
         }
     }
+    throw EndOfFileException{};
 }
