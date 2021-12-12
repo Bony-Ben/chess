@@ -51,15 +51,6 @@ void Game::play(double &whiteScore, double &blackScore) {
         std::cout << colour << "'s turn: ";  // for debugging
         try {
             player->makeMove(board, moves, turn);
-            history.push_back(board.getPrevMove());
-            std::swap(player, opp);
-            if (turn == 'W') {
-                turn = 'B';
-                colour = "Black";
-            } else {
-                turn = 'W';
-                colour = "White";
-            }
         } catch (ResignException e) {
             std::cout << (turn == 'W' ? "Black" : "White") << " wins!" << std::endl;
             if (turn == 'W') {
@@ -68,6 +59,15 @@ void Game::play(double &whiteScore, double &blackScore) {
                 whiteScore += 1;
             }
             break;
+        }
+        history.push_back(board.getPrevMove());
+        std::swap(player, opp);
+        if (turn == 'W') {
+            turn = 'B';
+            colour = "Black";
+        } else {
+            turn = 'W';
+            colour = "White";
         }
     }
     std::cout << "Enter any input to continue..." << std::endl;
