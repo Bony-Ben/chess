@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 #include "board.h"
 #include "display/graphicsobserver.h"
@@ -8,89 +10,175 @@
 #include "players/level1.h"
 #include "players/level2.h"
 
+std::vector<std::string> parseLine(std::string command) {
+    std::vector<std::string> input;
+    std::string s;
+    std::istringstream ss{command};
+    while (ss >> s) {
+        input.push_back(s);
+    }
+    return input;
+}
+
+int parseRank(std::string temp) {
+    if (temp.length() != 2) {
+        throw InputException{};
+    }
+    int diff = temp[1] - '1';
+    if (diff >= 0 && diff <= 7) {
+        return diff;
+    }
+    throw InputException{};
+}
+
+int parseFile(std::string temp) {
+    if (temp.length() != 2) {
+        throw InputException{};
+    }
+    int diff = temp[0] - 'a';
+    if (diff >= 0 && diff <= 7) {
+        return diff;
+    }
+    throw InputException{};
+}
+
+char parsePiece(std::string temp) {
+    if (temp.length() != 1) {
+        throw InputException{};
+    }
+    char c = tolower(temp[0]);
+    if (c == 'p' || c == 'r' || c == 'b' || c == 'n' || c == 'q' || c == 'k') {
+        return temp[0];
+    }
+    throw InputException{};
+}
+
+char parseColour(std::string temp) {
+    if (temp.length() != 1) {
+        throw InputException{};
+    }
+    if (temp[0] == 'W' || temp[0] == 'B') {
+        return temp[0];
+    }
+    throw InputException{};
+}
+
 void setup(Board &board, char &first) {
     std::cout << "~~~ Setup Mode ~~~" << std::endl;
     board.notifyObservers();
-    while (true) {
-        std::string command;
-        std::cin >> command;
-        if (command == "done") {
-            if (board.isValidBoard()) {
-                break;
-            } else {
-                std::cout << "Sorry, your board is not in a valid state." << std::endl;
+    std::string s;
+    while (std::getline(std::cin, s)) {
+        try {
+            std::vector<std::string> input = parseLine(s);
+            std::string command;
+            if (input.size() == 0) {
+                throw InputException{};
             }
-        } else if (command == "+") {
-            char piece;
-            char colour;
-            std::cin >> piece;
-            std::cin >> command;
-            int rank = command[1] - '1';
-            int file = command[0] - 'a';
-            board.deletePiece(rank, file);
-            if (piece >= 'A' && piece <= 'Z') {
-                colour = 'W';
-                piece += ('a' - 'A');
-            } else {
-                colour = 'B';
+            command = input.at(0);
+            if (command == "done") {
+                if (board.isValidBoard()) {
+                    break;
+                } else {
+                    std::cout << "Sorry, your board is not in a valid state." << std::endl;
+                }
+            } else if (command == "+") {
+                if (input.size() < 3) {
+                    throw InputException{};
+                }
+                command = input.at(1);
+                char piece = parsePiece(command);
+                command = input.at(2);
+                int rank = parseRank(command);
+                int file = parseFile(command);
+                board.deletePiece(rank, file);
+                char colour;
+                if (piece >= 'A' && piece <= 'Z') {
+                    colour = 'W';
+                    piece += ('a' - 'A');
+                } else {
+                    colour = 'B';
+                }
+                Piece *newpiece = board.addPiece(piece, colour);
+                newpiece->setRank(rank);
+                newpiece->setFile(file);
+                board.updateBoard();
+            } else if (command == "-") {
+                if (input.size() < 2) {
+                    throw InputException{};
+                }
+                command = input.at(1);
+                int rank = parseRank(command);
+                int file = parseFile(command);
+                board.deletePiece(rank, file);
+                board.updateBoard();
+            } else if (command == "=") {
+                if (input.size() < 2) {
+                    throw InputException{};
+                }
+                command = input.at(1);
+                char c = parseColour(command);
+                first = c;
             }
-            Piece *newpiece = board.addPiece(piece, colour);
-            newpiece->setRank(rank);
-            newpiece->setFile(file);
-            board.updateBoard();
-        } else if (command == "-") {
-            std::cin >> command;
-            int rank = command[1] - '1';
-            int file = command[0] - 'a';
-            board.deletePiece(rank, file);
-            board.updateBoard();
-        } else if (command == "=") {
-            char c;
-            std::cin >> c;
-            first = c;
+        } catch (InputException i) {
+            std::cout << "Invalid command. Please try again." << std::endl;
+            continue;
         }
     }
     std::cout << "~~~~~~~~~~~~~~~~~~" << std::endl;
 }
 
-std::unique_ptr<Player> createPlayer() {
-    std::string temp;
-    std::cin >> temp;
-    if (temp.substr(0, temp.size() - 1) == "computer") {
-        int level = temp[temp.size() - 1] - '0';
+std::unique_ptr<Player> createPlayer(std::string option) {
+    if (option.substr(0, option.size() - 1) == "computer") {
+        int level = option[option.size() - 1] - '0';
         if (level == 1) {
             return std::make_unique<Level1>();
         } else if (level == 2) {
             return std::make_unique<Level2>();
         }
+    } else if (option == "human") {
+        return std::make_unique<Human>();
     }
-    return std::make_unique<Human>();
+    throw InputException{};
 }
 
 int main() {
     srand(time(0));
     Board board;
     TextObserver tobs{&board};
-    GraphicsObserver gobs{&board};
+    // GraphicsObserver gobs{&board};
     char first = 'W';
     double whiteScore = 0.0;
     double blackScore = 0.0;
     std::string command;
     std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
-    while (std::cin >> command) {
-        if (command == "game") {
-            std::unique_ptr<Player> white = createPlayer();
-            std::unique_ptr<Player> black = createPlayer();
+    while (std::getline(std::cin, command)) {
+        try {
+            std::vector<std::string> input = parseLine(command);
+            if (input.size() == 0) {
+                throw InputException{};
+            }
+            command = input.at(0);
+            if (command == "game") {
+                if (input.size() < 3) {
+                    throw InputException{};
+                }
+                std::unique_ptr<Player> white = createPlayer(input.at(1));
+                std::unique_ptr<Player> black = createPlayer(input.at(2));
+                Game game{board, *white, *black, first};
+                game.play(whiteScore, blackScore);
+                first = 'W';
 
-            Game game{board, *white, *black, first};
-            game.play(whiteScore, blackScore);
-            first = 'W';
-
-            board.detach(&tobs);
-            board.reset();
-            board.attach(&tobs);
-        } else if (command == "setup") {
-            setup(board, first);
+                board.detach(&tobs);
+                board.reset();
+                board.attach(&tobs);
+            } else if (command == "setup") {
+                setup(board, first);
+            } else {
+                throw InputException{};
+            }
+        } catch (InputException i) {
+            std::cout << "Invalid command. Please try again." << std::endl;
+            continue;
         }
         std::cout << "Welcome to Chess!\nEnter 'game' to start playing, and enter 'setup' to customize your board." << std::endl;
     }

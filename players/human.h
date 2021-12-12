@@ -8,6 +8,7 @@ class Move;
 
 class ResignException {};
 class UndoException {};
+class InputException {};
 
 class Human : public Player {
    public:
