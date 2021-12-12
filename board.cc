@@ -87,12 +87,11 @@ bool Board::isCheck(char colour) {
 
 std::unique_ptr<Board> Board::getBoardAfterMove(Move mv) {
     auto tempBoard = std::make_unique<Board>(*this);
-    Move tempMove = mv;
-    tempMove.piece = tempBoard->getSquare(mv.oldRank, mv.oldFile);
+    mv.piece = tempBoard->getSquare(mv.oldRank, mv.oldFile);
     if (mv.capturedPiece != nullptr) {
-        tempMove.capturedPiece = tempBoard->getSquare(mv.capturedPiece->getRank(), mv.capturedPiece->getFile());
+        mv.capturedPiece = tempBoard->getSquare(mv.capturedPiece->getRank(), mv.capturedPiece->getFile());
     }
-    tempBoard->makeMove(tempMove);
+    tempBoard->makeMove(mv);
     return tempBoard;
 }
 
