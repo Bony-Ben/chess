@@ -29,22 +29,25 @@ void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
     if (direction == 1 && rank < 7) {
         if (file < 7 && board->getSquare(rank + 1, file + 1) != nullptr && board->getSquare(rank + 1, file + 1)->getColour() == 'B') {  // right
             addMoveIfValid(Move(this, rank, file, rank + 1, file + 1, board->getSquare(rank + 1, file + 1), false, false, false), moves, validateChecks);
-        } else if (file > 0 && board->getSquare(rank + 1, file - 1) != nullptr && board->getSquare(rank + 1, file - 1)->getColour() == 'B') {  // left
+        } 
+        if (file > 0 && board->getSquare(rank + 1, file - 1) != nullptr && board->getSquare(rank + 1, file - 1)->getColour() == 'B') {  // left
             addMoveIfValid(Move(this, rank, file, rank + 1, file - 1, board->getSquare(rank + 1, file - 1), false, false, false), moves, validateChecks);
         }
-    } else if (direction == -1 && rank > 0) {
+    } 
+    if (direction == -1 && rank > 0) {
         if (file < 7 && board->getSquare(rank - 1, file - 1) != nullptr && board->getSquare(rank - 1, file - 1)->getColour() == 'W') {  // left
             addMoveIfValid(Move(this, rank, file, rank - 1, file - 1, board->getSquare(rank - 1, file - 1), false, false, false), moves, validateChecks);
-        } else if (file > 0 && board->getSquare(rank - 1, file + 1) != nullptr && board->getSquare(rank - 1, file + 1)->getColour() == 'W') {  // right
-
+        } 
+        if (file > 0 && board->getSquare(rank - 1, file + 1) != nullptr && board->getSquare(rank - 1, file + 1)->getColour() == 'W') {  // right
             addMoveIfValid(Move(this, rank, file, rank - 1, file + 1, board->getSquare(rank - 1, file + 1), false, false, false), moves, validateChecks);
         }
     }
 
-    // deal with promotion
+    // promotion
     if (direction == -1 && file == 0) {  // black promotion
 
-    } else if (direction == 1 && file == 7) {  // white promotion
+    } 
+    if (direction == 1 && file == 7) {  // white promotion
     }
 
     // en passant: TODO
