@@ -6,38 +6,7 @@
 
 #include "../board.h"
 #include "../move.h"
-
-std::vector<std::string> Human::parseLine(std::string command) {
-    std::vector<std::string> input;
-    std::string s;
-    std::istringstream ss{command};
-    while (ss >> s) {
-        input.push_back(s);
-    }
-    return input;
-}
-
-int Human::parseRank(std::string temp) {
-    if (temp.length() != 2) {
-        throw InputException{};
-    }
-    int diff = temp[1] - '1';
-    if (diff >= 0 && diff <= 7) {
-        return diff;
-    }
-    throw InputException{};
-}
-
-int Human::parseFile(std::string temp) {
-    if (temp.length() != 2) {
-        throw InputException{};
-    }
-    int diff = temp[0] - 'a';
-    if (diff >= 0 && diff <= 7) {
-        return diff;
-    }
-    throw InputException{};
-}
+#include "../inputparser.h"
 
 void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
     std::string s;
