@@ -50,7 +50,34 @@ void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
     if (direction == 1 && file == 7) {  // white promotion
     }
 
-    // en passant: TODO
+    // en passant:
+    if (direction == -1 && rank == 3) { 
+      Move prev = board->getPrevMove();
+      if (file < 7 && board->getSquare(rank, file + 1) != nullptr && board->getSquare(rank, file + 1)->getColour() ==  'W') { // right
+        if (prev.oldRank == 1 && prev.oldFile == file + 1 && (prev.piece->getLetter() == 'p' || prev.piece->getLetter() == 'P')) {
+          addMoveIfValid(Move(this, rank, file, 2, file + 1, board->getSquare(rank, file + 1),  false, false, false), moves, validateChecks);
+        }
+      } 
+      if (file > 0 && board->getSquare(rank, file - 1) != nullptr && board->getSquare(rank, file - 1)->getColour() ==  'W') { // left
+        if (prev.oldRank == 1 && prev.oldFile == file - 1 && (prev.piece->getLetter() == 'p' || prev.piece->getLetter() == 'P')) {
+          addMoveIfValid(Move(this, rank, file, 2, file - 1, board->getSquare(rank, file - 1),  false, false, false), moves, validateChecks);
+        }
+      }
+    } 
+    if (direction == 1 && rank == 4) {
+      Move prev = board->getPrevMove();
+      if (file < 7 && board->getSquare(rank, file + 1) != nullptr && board->getSquare(rank, file + 1)->getColour() ==  'B') { // right
+        if (prev.oldRank == 6 && prev.oldFile == file + 1 && (prev.piece->getLetter() == 'p' || prev.piece->getLetter() == 'P')) {
+          addMoveIfValid(Move(this, rank, file, 5, file + 1, board->getSquare(4, file + 1),  false, false, false), moves, validateChecks);
+        }
+      } 
+      if (file > 0 && board->getSquare(rank, file - 1) != nullptr && board->getSquare(rank, file - 1)->getColour() ==  'B') { // left
+        if (prev.oldRank == 6 && prev.oldFile == file - 1 && (prev.piece->getLetter() == 'p' || prev.piece->getLetter() == 'P')) {
+          addMoveIfValid(Move(this, rank, file, 5, file - 1, board->getSquare(rank, file - 1),  false, false, false), moves, validateChecks);
+        }
+      }
+    }
+
 }
 
 std::unique_ptr<Piece> Pawn::clone(Board *board) const {
