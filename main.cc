@@ -118,6 +118,8 @@ void setup(Board &board, char &first) {
                 command = input.at(1);
                 char c = parseColour(command);
                 first = c;
+            } else {
+                throw InputException{};
             }
         } catch (InputException i) {
             std::cout << "Invalid command. Please try again." << std::endl;
