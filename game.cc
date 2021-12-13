@@ -73,5 +73,4 @@ void Game::play(double &whiteScore, double &blackScore) {
     std::cout << "Press enter to continue..." << std::endl;
     std::string temp;
     std::getline(std::cin, temp);
-    std::getline(std::cin, temp);
 }
