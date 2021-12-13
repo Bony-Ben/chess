@@ -7,26 +7,38 @@
 #include <vector>
 
 #include "../board.h"
+#include "../inputparser.h"
 #include "../move.h"
 #include "human.h"
 
 void Level2::makeMove(Board &board, std::vector<Move> &moves, char colour) {
     std::string s;
-    while (std::cin >> s) {
-        if (s == "move") {
-            std::vector<Move> checksAndCaptures;
-            for (int i = 0; i < (int)moves.size(); i++) {
-                if (moves[i].capturedPiece != nullptr || moves[i].check) {
-                    checksAndCaptures.push_back(moves[i]);
+    while (std::getline(std::cin, s)) {
+        try {
+            std::vector<std::string> input = parseLine(s);
+            if (input.size() == 0) {
+                throw InputException{};
+            }
+            s = input.at(0);
+            if (s == "move") {
+                std::vector<Move> checksAndCaptures;
+                for (int i = 0; i < (int)moves.size(); i++) {
+                    if (moves[i].capturedPiece != nullptr || moves[i].check) {
+                        checksAndCaptures.push_back(moves[i]);
+                    }
                 }
-            }
-            if (checksAndCaptures.size() == 0) {
-                board.makeMove(moves[rand() % moves.size()]);
+                if (checksAndCaptures.size() == 0) {
+                    board.makeMove(moves[rand() % moves.size()]);
+                } else {
+                    board.makeMove(checksAndCaptures[rand() % checksAndCaptures.size()]);
+                }
+                return;
             } else {
-                board.makeMove(checksAndCaptures[rand() % checksAndCaptures.size()]);
+                throw InputException{};
             }
-            return;
+        } catch (InputException i) {
+            std::cout << "Invalid Input! Please try again." << std ::endl;
         }
     }
-    throw EndOfFileException{};   
+    throw EndOfFileException{};
 }
