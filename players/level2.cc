@@ -23,7 +23,7 @@ void Level2::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             if (s == "move") {
                 std::vector<Move> checksAndCaptures;
                 for (int i = 0; i < (int)moves.size(); i++) {
-                    if (moves[i].capturedPiece != nullptr || moves[i].check) {
+                    if (moves[i].capturedPiece != nullptr || moves[i].check || moves[i].castle) {
                         checksAndCaptures.push_back(moves[i]);
                     }
                 }

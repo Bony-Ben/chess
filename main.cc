@@ -2,14 +2,15 @@
 #include <sstream>
 #include <vector>
 
-#include "inputparser.h"
 #include "board.h"
 #include "display/graphicsobserver.h"
 #include "display/textobserver.h"
 #include "game.h"
+#include "inputparser.h"
 #include "players/human.h"
 #include "players/level1.h"
 #include "players/level2.h"
+#include "players/level3.h"
 
 void setup(Board &board, char &first) {
     std::cout << "~~~ Setup Mode ~~~" << std::endl;
@@ -84,6 +85,8 @@ std::unique_ptr<Player> createPlayer(std::string option) {
             return std::make_unique<Level1>();
         } else if (level == 2) {
             return std::make_unique<Level2>();
+        } else if (level == 3) {
+            return std::make_unique<Level3>();
         }
     } else if (option == "human") {
         return std::make_unique<Human>();
@@ -95,7 +98,7 @@ int main() {
     srand(time(0));
     Board board;
     TextObserver tobs{&board};
-    GraphicsObserver gobs{&board};
+    // GraphicsObserver gobs{&board};
     char first = 'W';
     double whiteScore = 0.0;
     double blackScore = 0.0;

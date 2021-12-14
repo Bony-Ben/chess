@@ -48,7 +48,7 @@ void Game::play(double &whiteScore, double &blackScore) {
         } else if (history.size() > 0 && history.back().check) {
             std::cout << colour << " is in check!" << std::endl;
         }
-        std::cout << colour << "'s turn: ";  // for debugging
+        std::cout << colour << "'s turn: " << std::endl;  // for debugging
         try {
             player->makeMove(board, moves, turn);
         } catch (ResignException e) {
