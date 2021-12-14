@@ -15,9 +15,9 @@ class Move {
     Piece *capturedPiece;
     bool check;
     bool castle;
-    bool promotion;
+    char promotion;
 
-    Move(Piece *piece, int oldRank, int oldFile, int newRank, int newFile, Piece *capturedPiece, bool check, bool castle, bool promotion);
+    Move(Piece *piece, int oldRank, int oldFile, int newRank, int newFile, Piece *capturedPiece, bool check, bool castle, char promotion);
 };
 
 #endif
