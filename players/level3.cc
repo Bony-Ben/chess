@@ -22,14 +22,14 @@ void Level3::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             }
             s = input.at(0);
             if (s == "move") {
-                Move *bestMove = nullptr;
+                std::vector<Move> bestMoves;
                 int bestMovePointValue = std::numeric_limits<int>::min();
                 for (int i = 0; i < (int)moves.size(); i++) {
                     int movePointValue = 0;
                     if (moves[i].capturedPiece != nullptr) {
                         movePointValue += moves[i].capturedPiece->getValue();
                     }
-                    if (moves[i].check || moves[i].castle) {
+                    if (moves[i].check || moves[i].castle || moves[i].promotion) {
                         movePointValue += 1;
                     }
                     auto nextBoard = board.getBoardAfterMove(moves[i]);
@@ -39,8 +39,11 @@ void Level3::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                             board.makeMove(moves[i]);
                             return;
                         } else if (bestMovePointValue <= 0) {
-                            bestMove = &moves[i];
-                            bestMovePointValue = 0;
+                            if (bestMovePointValue < 0) {
+                                bestMovePointValue = 0;
+                                bestMoves.clear();
+                            }
+                            bestMoves.push_back(moves[i]);
                             continue;
                         }
                     }
@@ -49,12 +52,15 @@ void Level3::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                         int oppMovePointValue = oppMoves[j].capturedPiece == nullptr ? 0 : oppMoves[j].capturedPiece->getValue();
                         maxOppMovePointValue = std::max(maxOppMovePointValue, oppMovePointValue);
                     }
-                    if (movePointValue - maxOppMovePointValue > bestMovePointValue) {
-                        bestMove = &moves[i];
-                        bestMovePointValue = movePointValue - maxOppMovePointValue;
+                    if (movePointValue - maxOppMovePointValue >= bestMovePointValue) {
+                        if (movePointValue - maxOppMovePointValue > bestMovePointValue) {
+                            bestMovePointValue = movePointValue - maxOppMovePointValue;
+                            bestMoves.clear();
+                        }
+                        bestMoves.push_back(moves[i]);
                     }
                 }
-                board.makeMove(*bestMove);
+                board.makeMove(bestMoves[rand() % bestMoves.size()]);
                 return;
 
             } else {
