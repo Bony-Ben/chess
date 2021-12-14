@@ -5,6 +5,7 @@
 #define INPUT_H
 
 class InputException {};
+class EndOfFileException{};
 std::vector<std::string> parseLine(std::string command);
 int parseRank(std::string temp);
 int parseFile(std::string temp);

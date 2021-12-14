@@ -10,7 +10,6 @@ class Move;
 
 class ResignException {};
 class UndoException {};
-class EndOfFileException {};
 
 class Human : public Player {
    public:

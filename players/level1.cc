@@ -9,7 +9,6 @@
 #include "../board.h"
 #include "../inputparser.h"
 #include "../move.h"
-#include "human.h"
 
 void Level1::makeMove(Board &board, std::vector<Move> &moves, char colour) {
     std::string colour_name;

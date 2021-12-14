@@ -10,7 +10,6 @@
 #include "../board.h"
 #include "../inputparser.h"
 #include "../move.h"
-#include "human.h"
 
 int Level4::minimax(Board &board, char colour, int depth) {
     if (depth >= MAX_DEPTH) {
