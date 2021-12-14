@@ -9,6 +9,8 @@
 #include "../inputparser.h"
 
 void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
+    std::string colour_name;
+    colour_name = (colour == 'W') ? "White" : "Black";
     std::string s;
     while (std::getline(std::cin, s)) {
         try {
@@ -35,6 +37,7 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                     }
                 }
                 std::cout << "Invalid Move!" << std ::endl;
+                std::cout << colour_name << "'s turn: ";
             } else if (command == "resign") {
                 throw ResignException{};
             } else {
@@ -42,6 +45,7 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             }
         } catch (InputException i) {
             std::cout << "Invalid Input! Please try again." << std ::endl;
+            std::cout << colour_name << "'s turn: ";
         }
     }
     throw EndOfFileException{};

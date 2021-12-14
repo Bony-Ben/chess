@@ -12,6 +12,8 @@
 #include "human.h"
 
 void Level2::makeMove(Board &board, std::vector<Move> &moves, char colour) {
+    std::string colour_name;
+    colour_name = (colour == 'W') ? "White" : "Black";
     std::string s;
     while (std::getline(std::cin, s)) {
         try {
@@ -38,6 +40,7 @@ void Level2::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             }
         } catch (InputException i) {
             std::cout << "Invalid Input! Please try again." << std ::endl;
+            std::cout << colour_name << "'s turn: ";
         }
     }
     throw EndOfFileException{};
