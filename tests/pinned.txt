@@ -1,0 +1,19 @@
+setup
+- b8
+- d7
+- e7
+- b1
+- f1
+- g1
+- e2
++ N c3
++ N f3
++ P e4
++ B b5
++ n c6
++ p d6
++ p e5
+= B
+done
+game human human
+move c6 a5

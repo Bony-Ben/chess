@@ -1,0 +1,7 @@
+setup
+- h7
+- h8
++ P h7
+done
+game human human
+move h7 h8 Q

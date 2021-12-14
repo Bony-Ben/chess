@@ -8,7 +8,7 @@ class Board;
 
 class GraphicsObserver : public Observer {
     Board *board;
-    Piece *pieces[8][8];
+    char chesspieces[8][8];
     Xwindow *w;
 
    public:

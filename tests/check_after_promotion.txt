@@ -1,0 +1,60 @@
+setup
+- a8
+- b8
+- c8
+- d8
+- e8
+- f8
+- g8
+- h8
+- a7
+- b7
+- c7
+- d7
+- e7
+- f7
+- g7
+- h7
+- a1
+- a2
+- b2
+- b1
+- c1
+- c2
+- d1
+- d2
+- e1
+- e2
+- f1
+- f2
+- g1
+- g2
+- h1
+- h2
++ Q b7
++ P b2
++ P c2
++ K e1
++ R a1
+- a1
++ R h1
++ r h8
++ p h6
++ q e8
++ k f7
++ b g7
++ p e6
++ P e5
++ P f2
++ P f3
+- f3
++ P g3
++ N f3
++ p f6
++ b f5
++ p g5
++ p c7
++ P c7
+done
+game human human
+move c7 c8 Q 
