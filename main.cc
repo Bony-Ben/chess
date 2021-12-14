@@ -44,7 +44,7 @@ void setup(Board &board, char &first) {
                 char colour;
                 if (piece >= 'A' && piece <= 'Z') {
                     colour = 'W';
-                    piece += ('a' - 'A');
+                    piece = tolower(piece);
                 } else {
                     colour = 'B';
                 }
@@ -130,6 +130,19 @@ int main() {
                     board.attach(&tobs);
                 } else if (command == "setup") {
                     setup(board, first);
+                } else if (command == "seed") {
+                    if (input.size() < 2) {
+                        throw InputException{};
+                    }
+                    std::string str_seed = input.at(1);
+                    for (int i = 0; i < (int)str_seed.length(); i++) {
+                        if (!isdigit(str_seed[i])) {
+                            throw InputException{};
+                        }
+                    }
+                    int seed = std::stoi(str_seed);
+                    srand(seed);
+                    continue;
                 } else {
                     throw InputException{};
                 }
