@@ -81,6 +81,7 @@ void Level4::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                         bestMoves.push_back(moves[i]);
                     }
                 }
+                // std::cout << 4 << " " << bestMovePointValue << std::endl;
                 board.makeMove(bestMoves[rand() % bestMoves.size()]);
                 return;
 

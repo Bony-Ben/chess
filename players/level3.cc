@@ -60,6 +60,7 @@ void Level3::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                         bestMoves.push_back(moves[i]);
                     }
                 }
+                // std::cout << 3 << " " << bestMovePointValue << std::endl;
                 board.makeMove(bestMoves[rand() % bestMoves.size()]);
                 return;
 
