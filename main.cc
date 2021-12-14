@@ -43,7 +43,7 @@ void setup(Board &board, char &first) {
                 char colour;
                 if (piece >= 'A' && piece <= 'Z') {
                     colour = 'W';
-                    piece += ('a' - 'A');
+                    piece = tolower(piece);
                 } else {
                     colour = 'B';
                 }
@@ -139,6 +139,7 @@ int main() {
                     }
                     int seed = std::stoi(str_seed);
                     srand(seed);
+                    continue;
                 } else {
                     throw InputException{};
                 }
