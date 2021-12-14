@@ -15,7 +15,7 @@ void Knight::getMoves(std::vector<Move> &moves, bool validateChecks) {
         int newfile = file + horiz[i];
         if (newrank >= 0 && newrank < 8 && newfile >= 0 && newfile < 8) {
             Piece *occupant = board->getSquare(newrank, newfile);
-            addMoveIfValid(Move(this, rank, file, newrank, newfile, occupant,  false, false, false), moves, validateChecks);
+            addMoveIfValid(Move(this, rank, file, newrank, newfile, occupant,  false, false, ' '), moves, validateChecks);
         }
     }
 }
