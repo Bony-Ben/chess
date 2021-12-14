@@ -5,6 +5,11 @@
 
 GraphicsObserver::GraphicsObserver(Board *board) : board{board} {
     w = new Xwindow(720, 720);
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            pieces[i][j] = board->getSquare(i,j);
+        }
+    }
     bool white = true;
     for (int y = 0; y <= 630; y += 90) {
         for (int x = 0; x <= 630; x += 90) {
@@ -42,24 +47,47 @@ GraphicsObserver::~GraphicsObserver() {
 }
 
 void GraphicsObserver::notify() {
-    bool white = true;
-    for (int y = 0; y <= 630; y += 90) {
-        for (int x = 0; x <= 630; x += 90) {
-            if (white) {
-                w->fillRectangle(x + 35, y + 35, 20, 20, Xwindow::White);
-            } else {
-                w->fillRectangle(x + 35, y + 35, 20, 20);
+    bool white = false;
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            if ((pieces[y][x] != board->getSquare(y,x))) {
+                if (white) {
+                    w->fillRectangle(x*90 + 35, (7-y)*90 + 35, 20, 20, Xwindow::White);
+                } else {
+                    w->fillRectangle(x*90 + 35, (7-y)*90 + 35, 20, 20);
+                }
+                if (board->getSquare(y,x) != nullptr) {
+                    Piece *p = board->getSquare(y,x);
+                    if ((p->getRank() % 2) != (p->getFile() % 2)) {
+                         w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::Black);
+                    } else {
+                        w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::White);
+                    }
+                }
+
             }
+            pieces[y][x] = board->getSquare(y,x);
             white = !white;
         }
         white = !white;
     }
-    std::vector<Piece *> pieces = board->getPieces();
-    for (auto p : pieces) {
-        if ((p->getRank() % 2) != (p->getFile() % 2)) {
-            w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::Black);
-        } else {
-            w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::White);
-        }
-    }
+    // for (int y = 0; y <= 630; y += 90) {
+    //     for (int x = 0; x <= 630; x += 90) {
+    //         if (white) {
+    //             w->fillRectangle(x + 35, y + 35, 20, 20, Xwindow::White);
+    //         } else {
+    //             w->fillRectangle(x + 35, y + 35, 20, 20);
+    //         }
+    //         white = !white;
+    //     }
+    //     white = !white;
+    // }
+    // std::vector<Piece *> pieces = board->getPieces();
+    // for (auto p : pieces) {
+    //     if ((p->getRank() % 2) != (p->getFile() % 2)) {
+    //         w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::Black);
+    //     } else {
+    //         w->drawString(p->getFile() * 90 + 45, (7 - p->getRank()) * 90 + 45, std::string(1, p->getLetter()), Xwindow::White);
+    //     }
+    // }
 }
