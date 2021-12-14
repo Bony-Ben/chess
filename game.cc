@@ -9,6 +9,12 @@
 
 Game::Game(Board &board, Player &white, Player &black, char first) : board{board}, white{white}, black{black}, first{first} {}
 
+void Game::undo() {
+    board.undoPrevMove();
+    history.pop_back();
+    board.setPrevMove(history.back());
+}
+
 // Players should not call board.getMoves(), instead they should use the moves provided to them.
 void Game::play(double &whiteScore, double &blackScore) {
     board.notifyObservers();
@@ -59,6 +65,12 @@ void Game::play(double &whiteScore, double &blackScore) {
                 whiteScore += 1;
             }
             break;
+        } catch (UndoException e) {
+            if (history.size() >= 2) {
+                undo();
+                undo();
+            }
+            continue;
         }
         history.push_back(board.getPrevMove());
         std::swap(player, opp);

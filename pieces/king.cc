@@ -8,8 +8,17 @@
 
 King::King(char colour, int rank, int file, Board *board, bool canCastle) : Piece{colour, rank, file, 'k', board, 10000}, canCastle{canCastle} {}
 
+void King::executeWhenUndoed(Move &mv) {
+    if (mv.loseCastleRightsMove) {
+        canCastle = true;
+    }
+}
+
 void King::executeWhenMoved(Move &mv) {
-    canCastle = false;
+    if (canCastle) {
+        mv.loseCastleRightsMove = true;
+        canCastle = false;
+    }
 }
 
 void King::getMoves(std::vector<Move> &moves, bool validateChecks) {

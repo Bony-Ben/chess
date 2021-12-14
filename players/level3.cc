@@ -29,7 +29,7 @@ void Level3::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                     if (moves[i].capturedPiece != nullptr) {
                         movePointValue += moves[i].capturedPiece->getValue();
                     }
-                    if (moves[i].check || moves[i].castle || moves[i].promotion) {
+                    if (moves[i].check || moves[i].castle || moves[i].promotion != ' ') {
                         movePointValue += 1;
                     }
                     auto nextBoard = board.getBoardAfterMove(moves[i]);

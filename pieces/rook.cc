@@ -6,8 +6,18 @@
 
 Rook::Rook(char colour, int rank, int file, Board *board, bool canCastle) : Piece{colour, rank, file, 'r', board, 5}, canCastle{canCastle} {}
 
-void Rook::executeWhenMoved(Move &mv){
-    canCastle=false;
+
+void Rook::executeWhenUndoed(Move &mv) {
+    if (mv.loseCastleRightsMove) {
+        canCastle = true;
+    }
+}
+
+void Rook::executeWhenMoved(Move &mv) {
+    if (canCastle) {
+        mv.loseCastleRightsMove = true;
+        canCastle = false;
+    }
 }
 
 void Rook::getMoves(std::vector<Move> &moves, bool validateChecks) {

@@ -17,6 +17,8 @@ class Move {
     bool castle;
     char promotion;
 
+    bool loseCastleRightsMove;
+
     Move(Piece *piece, int oldRank, int oldFile, int newRank, int newFile, Piece *capturedPiece, bool check, bool castle, char promotion);
 };
 

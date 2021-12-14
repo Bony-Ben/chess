@@ -1,13 +1,13 @@
 #include "human.h"
 
+#include <cctype>
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <cctype>
 
 #include "../board.h"
-#include "../move.h"
 #include "../inputparser.h"
+#include "../move.h"
 
 void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
     std::string colour_name;
@@ -38,24 +38,26 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                     command = input.at(3);
                     promo = command[0];
                     if (toupper(promo) != 'Q' && toupper(promo) != 'N' && toupper(promo) != 'B' && toupper(promo) != 'R') {
-                      std::cout << "word " << promo << std::endl;
-                      invalid = true;
+                        std::cout << "word " << promo << std::endl;
+                        invalid = true;
                     }
                 }
                 if (!invalid) {
-                  for (int i = 0; i < (int)moves.size(); i++) {
-                    if (moves[i].oldRank == startRank && moves[i].oldFile == startFile && moves[i].newRank == endRank && moves[i].newFile == endFile) {
-                        if ((input.size() < 4) || (input.size() >= 4 && moves[i].promotion == toupper(promo))) {
-                          board.makeMove(moves[i]);
-                          return;
+                    for (int i = 0; i < (int)moves.size(); i++) {
+                        if (moves[i].oldRank == startRank && moves[i].oldFile == startFile && moves[i].newRank == endRank && moves[i].newFile == endFile) {
+                            if ((input.size() < 4) || (input.size() >= 4 && moves[i].promotion == toupper(promo))) {
+                                board.makeMove(moves[i]);
+                                return;
+                            }
                         }
                     }
-                  }
                 }
                 std::cout << "Invalid Move!" << std ::endl;
                 std::cout << colour_name << "'s turn: ";
             } else if (command == "resign") {
                 throw ResignException{};
+            } else if (command == "undo") {
+                throw UndoException{};
             } else {
                 throw InputException{};
             }

@@ -15,6 +15,7 @@ class Game {
     Player &black;
     char first;
     std::vector<Move> history;
+    void undo();
 
    public:
     Game(Board &board, Player &white, Player &black, char first);

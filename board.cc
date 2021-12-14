@@ -133,6 +133,36 @@ std::vector<Move> Board::getMoves(char colour, bool validateChecks) const {
     return ans;
 }
 
+void Board::undoPrevMove() {
+    Move &mv = *prevMove;
+
+    if (mv.capturedPiece != nullptr) {
+        mv.capturedPiece->setCaptured(false);
+    }
+    mv.piece->setRank(mv.oldRank);
+    mv.piece->setFile(mv.oldFile);
+    mv.piece->executeWhenUndoed(mv);
+
+    if (mv.promotion != ' ') {
+        pieces.pop_back();
+        mv.piece->setCaptured(false);
+    }
+
+    if (mv.castle) {
+        Piece *rook;
+        if (mv.newFile == 6) {
+            rook = board[mv.newRank][5];
+            rook->setFile(7);
+        } else if (mv.newFile == 2) {
+            rook = board[mv.newRank][3];
+            rook->setFile(0);
+        }
+        rook->executeWhenUndoed(mv);
+    }
+
+    updateBoard();
+}
+
 void Board::makeMove(Move &mv) {
     if (mv.capturedPiece != nullptr) {
         mv.capturedPiece->setCaptured(true);
@@ -142,16 +172,16 @@ void Board::makeMove(Move &mv) {
     mv.piece->executeWhenMoved(mv);
 
     if (mv.promotion != ' ') {
-      if (mv.promotion == 'Q') {
-        pieces.push_back(std::make_unique<Queen>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
-      } else if (mv.promotion == 'B') {
-        pieces.push_back(std::make_unique<Bishop>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
-      } else if (mv.promotion == 'N') {
-        pieces.push_back(std::make_unique<Knight>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
-      } else {
-        pieces.push_back(std::make_unique<Rook>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this, false));
-      }
-      mv.piece->setCaptured(true);
+        if (mv.promotion == 'Q') {
+            pieces.push_back(std::make_unique<Queen>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
+        } else if (mv.promotion == 'B') {
+            pieces.push_back(std::make_unique<Bishop>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
+        } else if (mv.promotion == 'N') {
+            pieces.push_back(std::make_unique<Knight>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
+        } else {
+            pieces.push_back(std::make_unique<Rook>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this, false));
+        }
+        mv.piece->setCaptured(true);
     }
 
     if (mv.castle) {
@@ -200,6 +230,10 @@ void Board::deletePiece(int rank, int file) {
 
 Move &Board::getPrevMove() {
     return *prevMove;
+}
+
+void Board::setPrevMove(Move &mv) {
+    prevMove = std::make_unique<Move>(mv);
 }
 
 std::ostream &operator<<(std::ostream &out, const Board &b) {

@@ -12,6 +12,8 @@ Piece::Piece(char colour, int rank, int file, char letter, Board *board, int val
 
 void Piece::executeWhenMoved(Move &mv) {}
 
+void Piece::executeWhenUndoed(Move &mv) {}
+
 void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateChecks) {
     if (mv.capturedPiece != nullptr && colour == mv.capturedPiece->colour) {
         return;

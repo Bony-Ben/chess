@@ -22,6 +22,7 @@ class Piece {
    public:
     Piece(char colour, int rank, int file, char letter, Board *board, int value);
     virtual void executeWhenMoved(Move &mv);
+    virtual void executeWhenUndoed(Move &mv);
 
     virtual void getMoves(std::vector<Move> &moves, bool validateChecks) = 0;
     char getColour() const;
