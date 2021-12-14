@@ -7,7 +7,7 @@ class Board;
 class Move;
 
 class Level4 : public Player {
-    int MAX_DEPTH = 3;
+    int MAX_DEPTH = 2;
 
     int minimax(Board &board, char turn, int depth);
     int evaluateMove(Move &mv);
