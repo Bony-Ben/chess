@@ -1,0 +1,4 @@
+game human computer2
+move e2 e4
+move
+resign

@@ -98,7 +98,7 @@ int main() {
     srand(time(0));
     Board board;
     TextObserver tobs{&board};
-    // GraphicsObserver gobs{&board};
+    GraphicsObserver gobs{&board};
     char first = 'W';
     double whiteScore = 0.0;
     double blackScore = 0.0;
