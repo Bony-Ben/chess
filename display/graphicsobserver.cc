@@ -4,7 +4,7 @@
 #include <string>
 
 GraphicsObserver::GraphicsObserver(Board *board) : board{board} {
-    w = new Xwindow(720, 720);
+    w = std::make_unique<Xwindow>(720, 720);
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             chesspieces[i][j] = (board->getSquare(i,j) == nullptr) ? ' ' : board->getSquare(i,j)->getLetter();
@@ -42,7 +42,6 @@ GraphicsObserver::GraphicsObserver(Board *board) : board{board} {
 }
 
 GraphicsObserver::~GraphicsObserver() {
-    delete w;
     board->detach(this);
 }
 
