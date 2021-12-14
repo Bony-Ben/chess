@@ -52,7 +52,7 @@ Xwindow::Xwindow(int width, int height) {
 
     XSynchronize(d, True);
 
-    // usleep(1000);
+    // sleep(1);
 }
 
 Xwindow::~Xwindow() {

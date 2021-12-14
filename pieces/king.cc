@@ -6,7 +6,7 @@
 #include "../move.h"
 #include "rook.h"
 
-King::King(char colour, int rank, int file, Board *board, bool canCastle) : Piece{colour, rank, file, 'k', board, 10000}, canCastle{canCastle} {}
+King::King(char colour, int rank, int file, Board *board, bool canCastle) : Piece{colour, rank, file, 'k', board, 1000}, canCastle{canCastle} {}
 
 void King::executeWhenUndoed(Move &mv) {
     if (mv.loseCastleRightsMove) {

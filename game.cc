@@ -69,6 +69,8 @@ void Game::play(double &whiteScore, double &blackScore) {
             if (history.size() >= 2) {
                 undo();
                 undo();
+            } else {
+                std::cout << "You can only undo when at least 2 moves have been played in the game.\n" << std::endl;
             }
             continue;
         }

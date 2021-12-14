@@ -22,7 +22,7 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             }
             command = input.at(0);
             if (command == "move") {
-                char promo = ' ';
+                char promo = 'Q';
                 bool invalid = false;
                 if (input.size() < 3) {
                     throw InputException{};

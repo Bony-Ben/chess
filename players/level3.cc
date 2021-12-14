@@ -23,7 +23,7 @@ void Level3::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             s = input.at(0);
             if (s == "move") {
                 std::vector<Move> bestMoves;
-                int bestMovePointValue = std::numeric_limits<int>::min();
+                int bestMovePointValue = -10000;
                 for (int i = 0; i < (int)moves.size(); i++) {
                     int movePointValue = 0;
                     if (moves[i].capturedPiece != nullptr) {
@@ -47,7 +47,7 @@ void Level3::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                             continue;
                         }
                     }
-                    int maxOppMovePointValue = std::numeric_limits<int>::min();
+                    int maxOppMovePointValue = -10000;
                     for (int j = 0; j < (int)oppMoves.size(); j++) {
                         int oppMovePointValue = oppMoves[j].capturedPiece == nullptr ? 0 : oppMoves[j].capturedPiece->getValue();
                         maxOppMovePointValue = std::max(maxOppMovePointValue, oppMovePointValue);

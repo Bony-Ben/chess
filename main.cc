@@ -11,6 +11,7 @@
 #include "players/level1.h"
 #include "players/level2.h"
 #include "players/level3.h"
+#include "players/level4.h"
 
 void setup(Board &board, char &first) {
     std::cout << "~~~ Setup Mode ~~~" << std::endl;
@@ -87,6 +88,8 @@ std::unique_ptr<Player> createPlayer(std::string option) {
             return std::make_unique<Level2>();
         } else if (level == 3) {
             return std::make_unique<Level3>();
+        } else if (level == 4) {
+            return std::make_unique<Level4>();
         }
     } else if (option == "human") {
         return std::make_unique<Human>();
