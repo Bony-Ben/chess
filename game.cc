@@ -74,7 +74,7 @@ void Game::play(double &whiteScore, double &blackScore) {
             }
             continue;
         }
-        history.push_back(board.getPrevMove());
+        history.push_back(*board.getPrevMove());
         std::swap(player, opp);
         if (turn == 'W') {
             turn = 'B';
