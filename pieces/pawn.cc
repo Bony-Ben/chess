@@ -27,14 +27,21 @@ void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
     if (direction == 1 && rank < 7) {
       if (file < 7 && board->getSquare(rank + 1, file + 1) != nullptr && board->getSquare(rank + 1, file + 1)->getColour() == 'B') {  // right
         if (rank == 6) {
-          addMoveIfValid(Move(this, rank, file, rank + 1, file + 1, board->getSquare(rank + 1, file + 1), false, false, ' '), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file + 1, board->getSquare(rank + 1, file + 1), false, false, 'Q'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file + 1, board->getSquare(rank + 1, file + 1), false, false, 'B'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file + 1, board->getSquare(rank + 1, file + 1), false, false, 'R'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file + 1, board->getSquare(rank + 1, file + 1), false, false, 'N'), moves, validateChecks);
+
         } else {
           addMoveIfValid(Move(this, rank, file, rank + 1, file + 1, board->getSquare(rank + 1, file + 1), false, false, ' '), moves, validateChecks);
         }
       } 
       if (file > 0 && board->getSquare(rank + 1, file - 1) != nullptr && board->getSquare(rank + 1, file - 1)->getColour() == 'B') {  // left
         if (rank == 6) {
-          addMoveIfValid(Move(this, rank, file, rank + 1, file - 1, board->getSquare(rank + 1, file - 1), false, false, ' '), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file - 1, board->getSquare(rank + 1, file - 1), false, false, 'Q'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file - 1, board->getSquare(rank + 1, file - 1), false, false, 'B'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file - 1, board->getSquare(rank + 1, file - 1), false, false, 'R'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank + 1, file - 1, board->getSquare(rank + 1, file - 1), false, false, 'N'), moves, validateChecks);
         } else {
           addMoveIfValid(Move(this, rank, file, rank + 1, file - 1, board->getSquare(rank + 1, file - 1), false, false, ' '), moves, validateChecks);
         }
@@ -44,14 +51,20 @@ void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
     if (direction == -1 && rank > 0) {
       if (file > 0 && board->getSquare(rank - 1, file - 1) != nullptr && board->getSquare(rank - 1, file - 1)->getColour() == 'W') {  // left
         if (rank == 1) { // capture and promote
-          addMoveIfValid(Move(this, rank, file, rank - 1, file - 1, board->getSquare(rank - 1, file - 1), false, false, ' '), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file - 1, board->getSquare(rank - 1, file - 1), false, false, 'Q'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file - 1, board->getSquare(rank - 1, file - 1), false, false, 'B'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file - 1, board->getSquare(rank - 1, file - 1), false, false, 'R'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file - 1, board->getSquare(rank - 1, file - 1), false, false, 'N'), moves, validateChecks);
         } else {
           addMoveIfValid(Move(this, rank, file, rank - 1, file - 1, board->getSquare(rank - 1, file - 1), false, false, ' '), moves, validateChecks);
         }
       } 
       if (file < 7 && board->getSquare(rank - 1, file + 1) != nullptr && board->getSquare(rank - 1, file + 1)->getColour() == 'W') {  // right
         if (rank == 1) { // capture and promote
-          addMoveIfValid(Move(this, rank, file, rank - 1, file + 1, board->getSquare(rank - 1, file + 1), false, false, ' '), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file + 1, board->getSquare(rank - 1, file + 1), false, false, 'Q'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file + 1, board->getSquare(rank - 1, file + 1), false, false, 'B'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file + 1, board->getSquare(rank - 1, file + 1), false, false, 'R'), moves, validateChecks);
+          addMoveIfValid(Move(this, rank, file, rank - 1, file + 1, board->getSquare(rank - 1, file + 1), false, false, 'N'), moves, validateChecks);
         } else {
           addMoveIfValid(Move(this, rank, file, rank - 1, file + 1, board->getSquare(rank - 1, file + 1), false, false, ' '), moves, validateChecks);
         }
@@ -60,10 +73,16 @@ void Pawn::getMoves(std::vector<Move> &moves, bool validateChecks) {
 
     // promotion without capturing
     if (direction == -1 && rank == 1 && board->getSquare(rank - 1, file) == nullptr) {  // black promotion
-      addMoveIfValid(Move(this, rank, file, rank - 1, file, board->getSquare(rank - 1, file), false, false, ' '), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank - 1, file, board->getSquare(rank - 1, file), false, false, 'Q'), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank - 1, file, board->getSquare(rank - 1, file), false, false, 'B'), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank - 1, file, board->getSquare(rank - 1, file), false, false, 'R'), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank - 1, file, board->getSquare(rank - 1, file), false, false, 'N'), moves, validateChecks);
     } 
     if (direction == 1 && rank == 6 && (board->getSquare(rank + 1, file) == nullptr)) {  // white promotion
-      addMoveIfValid(Move(this, rank, file, rank + 1, file, board->getSquare(rank + 1, file), false, false, ' '), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank + 1, file, board->getSquare(rank + 1, file), false, false, 'Q'), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank + 1, file, board->getSquare(rank + 1, file), false, false, 'B'), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank + 1, file, board->getSquare(rank + 1, file), false, false, 'R'), moves, validateChecks);
+      addMoveIfValid(Move(this, rank, file, rank + 1, file, board->getSquare(rank + 1, file), false, false, 'N'), moves, validateChecks);
     }
 
     // en passant:

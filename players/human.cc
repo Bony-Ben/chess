@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <cctype>
 
 #include "../board.h"
 #include "../move.h"
@@ -21,6 +22,8 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
             }
             command = input.at(0);
             if (command == "move") {
+                char promo = ' ';
+                bool invalid = false;
                 if (input.size() < 3) {
                     throw InputException{};
                 }
@@ -30,11 +33,24 @@ void Human::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                 command = input.at(2);
                 int endRank = parseRank(command);
                 int endFile = parseFile(command);
-                for (int i = 0; i < (int)moves.size(); i++) {
-                    if (moves[i].oldRank == startRank && moves[i].oldFile == startFile && moves[i].newRank == endRank && moves[i].newFile == endFile) {
-                        board.makeMove(moves[i]);
-                        return;
+
+                if (input.size() >= 4) {
+                    command = input.at(3);
+                    promo = command[0];
+                    if (toupper(promo) != 'Q' && toupper(promo) != 'N' && toupper(promo) != 'B' && toupper(promo) != 'R') {
+                      std::cout << "word " << promo << std::endl;
+                      invalid = true;
                     }
+                }
+                if (!invalid) {
+                  for (int i = 0; i < (int)moves.size(); i++) {
+                    if (moves[i].oldRank == startRank && moves[i].oldFile == startFile && moves[i].newRank == endRank && moves[i].newFile == endFile) {
+                        if ((input.size() < 4) || (input.size() >= 4 && moves[i].promotion == toupper(promo))) {
+                          board.makeMove(moves[i]);
+                          return;
+                        }
+                    }
+                  }
                 }
                 std::cout << "Invalid Move!" << std ::endl;
                 std::cout << colour_name << "'s turn: ";

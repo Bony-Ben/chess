@@ -141,6 +141,19 @@ void Board::makeMove(Move &mv) {
     mv.piece->setFile(mv.newFile);
     mv.piece->executeWhenMoved(mv);
 
+    if (mv.promotion != ' ') {
+      if (mv.promotion == 'Q') {
+        pieces.push_back(std::make_unique<Queen>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
+      } else if (mv.promotion == 'B') {
+        pieces.push_back(std::make_unique<Bishop>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
+      } else if (mv.promotion == 'N') {
+        pieces.push_back(std::make_unique<Knight>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this));
+      } else {
+        pieces.push_back(std::make_unique<Rook>(mv.piece->getColour(), mv.piece->getRank(), mv.piece->getFile(), this, false));
+      }
+      mv.piece->setCaptured(true);
+    }
+
     if (mv.castle) {
         Piece *rook;
         if (mv.newFile == 6) {
