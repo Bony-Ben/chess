@@ -1,0 +1,8 @@
+seed 246
+game human computer3
+move e2 e4
+move
+move d2 d4
+move
+move c1 d2
+move

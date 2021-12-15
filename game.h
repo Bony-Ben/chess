@@ -20,7 +20,6 @@ class Game {
    public:
     Game(Board &board, Player &white, Player &black, char first);
     void play(double &whiteScore, double &blackScore);
-    void printResult();
 };
 
 #endif
