@@ -18,7 +18,7 @@ int Level4::minimax(Board &board, char colour, int depth) {
     std::vector<Move> moves = board.getMoves(colour, true);
     if (moves.size() == 0) {
         if (board.getPrevMove()->check) {
-            return -1000;
+            return -1000 + 10 * depth;
         } else {
             return 0;
         }
