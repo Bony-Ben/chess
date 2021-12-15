@@ -35,8 +35,6 @@ setup
 + P b2
 + P c2
 + K e1
-+ R a1
-- a1
 + R h1
 + r h8
 + p h6
@@ -46,14 +44,11 @@ setup
 + p e6
 + P e5
 + P f2
-+ P f3
-- f3
 + P g3
 + N f3
 + p f6
 + b f5
 + p g5
-+ p c7
 + P c7
 done
 game human human

@@ -1,0 +1,44 @@
+seed 246
+game human computer4
+move e2 e4
+move
+move f1 c4
+move
+move d1 f3
+move
+move a2 a3
+move
+move b1 c3
+move
+move f3 g3
+move
+move g3 e5
+move
+move e5 d5
+move
+undo
+move e5 g5
+move
+move b2 c3
+move
+move e1 f1
+move
+move d2 d3
+move
+move g5 g3
+move
+move c1 d2
+move
+move g3 c7
+move
+move h2 h4
+move
+move h1 h3
+move
+move c7 b8
+move
+undo
+move c7 g3
+move
+move h4 h5
+move
