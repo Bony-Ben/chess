@@ -153,7 +153,7 @@ void Board::undoPrevMove() {
         if (mv.newFile == 6) {
             rook = board[mv.newRank][5];
             rook->setFile(7);
-        } else if (mv.newFile == 2) {
+        } else {
             rook = board[mv.newRank][3];
             rook->setFile(0);
         }
@@ -189,7 +189,7 @@ void Board::makeMove(Move &mv) {
         if (mv.newFile == 6) {
             rook = board[mv.newRank][7];
             rook->setFile(5);
-        } else if (mv.newFile == 2) {
+        } else {
             rook = board[mv.newRank][0];
             rook->setFile(3);
         }
