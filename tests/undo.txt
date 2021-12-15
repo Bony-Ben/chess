@@ -1,10 +1,8 @@
-seed 246
-game human computer3
+game human human
 move e2 e4
-move
+move e7 e5
 move f1 c4
-move
-move move d1 h5
+move g7 g6
 move d1 h5
-move
+move g6 h5
 undo
