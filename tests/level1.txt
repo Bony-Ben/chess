@@ -38,7 +38,7 @@ setup
 + K h1
 + k a8
 done
-seed 245
+seed 246
 game computer1 computer1
 move
 move
