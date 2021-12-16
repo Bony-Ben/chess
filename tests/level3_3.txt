@@ -1,0 +1,12 @@
+setup
+- e2
+- e7
++ P e4
++ p e5
+- d1
++ Q f3
+- f1
++ B c4
+done
+game computer3 human
+move
