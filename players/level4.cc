@@ -10,6 +10,8 @@
 #include "../board.h"
 #include "../inputparser.h"
 #include "../move.h"
+#include "../pieces/king.h"
+#include "../pieces/rook.h"
 
 int Level4::minimax(Board &board, char colour, int depth) {
     if (depth >= MAX_DEPTH) {
@@ -42,8 +44,11 @@ int Level4::evaluateMove(Move &mv) {
     if (mv.check) {
         movePointValue += 1;
     }
+    King *k = dynamic_cast<King *>(mv.piece);
     if (mv.castle) {
         movePointValue += 1;
+    } else if (k != nullptr && k->getCanCastle()) {
+        movePointValue -= 1;
     }
     if (mv.promotion != ' ') {
         if (mv.promotion == 'Q') {

@@ -13,6 +13,7 @@ class King : public Piece {
     void executeWhenMoved(Move &mv) override;
     void executeWhenUndoed(Move &mv) override;
     void getMoves(std::vector<Move> &moves, bool validateChecks) override;
+    bool getCanCastle();
     std::unique_ptr<Piece> clone(Board * board) const override;
 };
 

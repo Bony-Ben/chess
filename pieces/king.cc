@@ -55,6 +55,10 @@ void King::getMoves(std::vector<Move> &moves, bool validateChecks) {
     }
 }
 
+bool King::getCanCastle(){
+    return canCastle;
+}
+
 std::unique_ptr<Piece> King::clone(Board *board) const {
     auto ptr = std::make_unique<King>(*this);
     ptr->board = board;
