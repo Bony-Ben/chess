@@ -8,5 +8,6 @@ setup
 - f1
 + B c4
 done
+seed 246
 game computer3 human
 move
