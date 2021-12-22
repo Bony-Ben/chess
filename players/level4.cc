@@ -39,7 +39,7 @@ int Level4::minimax(Board &board, char colour, int depth) {
 int Level4::evaluateMove(Move &mv) {
     int movePointValue = 0;
     if (mv.capturedPiece != nullptr) {
-        movePointValue += mv.capturedPiece->getValue();
+        movePointValue += mv.capturedPiece->getValue() * 2;
     }
     if (mv.check) {
         movePointValue += 1;
@@ -52,11 +52,11 @@ int Level4::evaluateMove(Move &mv) {
     }
     if (mv.promotion != ' ') {
         if (mv.promotion == 'Q') {
-            movePointValue += 9;
+            movePointValue += 18;
         } else if (mv.promotion == 'R') {
-            movePointValue += 5;
+            movePointValue += 10;
         } else {
-            movePointValue += 3;
+            movePointValue += 6;
         }
     }
     return movePointValue;
