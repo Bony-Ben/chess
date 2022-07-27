@@ -22,10 +22,11 @@ void Piece::addMoveIfValid(Move mv, std::vector<Move> &moves, bool validateCheck
         moves.push_back(mv);
         return;
     }
-    auto tempBoard = board->getBoardAfterMove(mv);
 
-    bool whiteCheck = tempBoard->isCheck('W');
-    bool blackCheck = tempBoard->isCheck('B');
+    board->makeMove(mv);
+    bool whiteCheck = board->isCheck('W');
+    bool blackCheck = board->isCheck('B');
+    board->undoMove(mv);
 
     if (colour == 'W' && !blackCheck) {
         mv.check = whiteCheck;

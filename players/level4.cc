@@ -14,23 +14,22 @@
 #include "../pieces/rook.h"
 
 int Level4::minimax(Board &board, char colour, int depth) {
-    if (depth >= MAX_DEPTH) {
+    if (depth > MAX_DEPTH) {
         return 0;
     }
     std::vector<Move> moves = board.getMoves(colour, true);
     if (moves.size() == 0) {
         if (board.getPrevMove()->check) {
-            return -1000 + 20 * depth;
+            return -10000 + 50 * depth;
         } else {
             return 0;
         }
     }
     int bestMovePointValue = -10000;
     for (int i = 0; i < (int)moves.size(); i++) {
-        auto nextBoard = board.getBoardAfterMove(moves[i]);
-
-        int movePointValue = evaluateMove(moves[i]) - minimax(*nextBoard, colour == 'W' ? 'B' : 'W', depth + 1);
-
+        board.makeMove(moves[i]);
+        int movePointValue = evaluateMove(moves[i]) - minimax(board, colour == 'W' ? 'B' : 'W', depth + 1);
+        board.undoMove(moves[i]);
         bestMovePointValue = std::max(bestMovePointValue, movePointValue);
     }
     return bestMovePointValue;
@@ -76,7 +75,7 @@ void Level4::makeMove(Board &board, std::vector<Move> &moves, char colour) {
                 int bestMovePointValue = -10000;
                 for (int i = 0; i < (int)moves.size(); i++) {
                     auto nextBoard = board.getBoardAfterMove(moves[i]);
-                    int movePointValue = evaluateMove(moves[i]) - minimax(*nextBoard, colour == 'W' ? 'B' : 'W', 0);
+                    int movePointValue = evaluateMove(moves[i]) - minimax(*nextBoard, colour == 'W' ? 'B' : 'W', 1);
                     if (movePointValue >= bestMovePointValue) {
                         if (movePointValue > bestMovePointValue) {
                             bestMovePointValue = movePointValue;

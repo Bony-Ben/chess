@@ -120,22 +120,28 @@ void Board::updateBoard() {
             board[pieces[i]->getRank()][pieces[i]->getFile()] = pieces[i].get();
         }
     }
-    notifyObservers();
+    if (!silent) {
+        notifyObservers();
+    }
 }
 
-std::vector<Move> Board::getMoves(char colour, bool validateChecks) const {
+std::vector<Move> Board::getMoves(char colour, bool validateChecks) {
+    bool oldSilent = silent;
+
+    silent = true;
     std::vector<Move> ans;
     for (int i = 0; i < (int)pieces.size(); i++) {
         if (!pieces[i]->isCaptured() && pieces[i]->getColour() == colour) {
             pieces[i]->getMoves(ans, validateChecks);
         }
     }
+    if (!oldSilent) {
+        silent = false;
+    }
     return ans;
 }
 
-void Board::undoPrevMove() {
-    Move &mv = *prevMove;
-
+void Board::undoMove(Move &mv) {
     if (mv.capturedPiece != nullptr) {
         mv.capturedPiece->setCaptured(false);
     }
@@ -161,6 +167,10 @@ void Board::undoPrevMove() {
     }
 
     updateBoard();
+}
+
+void Board::undoPrevMove() {
+    undoMove(*prevMove);
 }
 
 void Board::makeMove(Move &mv) {
